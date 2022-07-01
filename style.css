@@ -1,5 +1,12 @@
 body {
   background-color: rgb(25, 23, 101);
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  background-image: url(Images/circle-1-header.svg), url(Images/circle-2-header.svg), url(Images/circle-3.svg), url(Images/circle-4.svg), url(Images/circle-5-blur.svg), url(Images/circle-6-blur.svg);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 226px 226px, 184px 184px, 380px 940px, 220px 1100px, 600px 280px, 220px 1000px;
+  background-position: top 20px left -66px, top 540px left 260px, left -140px top 1170px, right -70px top 1820px, left -200px top 3080px, right -10px top 3490px;
 }
 
 h3{
@@ -22,7 +29,7 @@ color: #9490FF;
 p{
   width: 327px;
   height: 170px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -42,7 +49,7 @@ p{
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 18px;
   color: #fff;
 }
 
@@ -50,17 +57,9 @@ p{
   width: 35.33px;
   height: 22.83px;
 }
-
-.ULWD {
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  left: -106px;
-  top: 97px;
-  background: #edecff;
-  filter: blur(50px);
+.container p{
+  text-align: center;
 }
-
 .container {
   display: flex;
   flex-direction: column;
@@ -95,16 +94,6 @@ p{
   color: #edecff;
 }
 
-.c2 {
-  position: absolute;
-  width: 68px;
-  height: 68px;
-  left: 85%;
-  top: 495px;
-  background: #edecff;
-  filter: blur(50px);
-}
-
 .frames {
   display: flex;
   flex-wrap: wrap;
@@ -136,7 +125,7 @@ p{
   grid-template-columns: 1fr;
   row-gap: 30px;
   width: auto;  
-  margin-inline: 6%;
+  margin-inline: 15%;
   justify-content: center;  
   height: auto;
 }
@@ -146,7 +135,16 @@ display: flex;
 flex-wrap: wrap;
 column-gap: 100%;
 justify-content: flex-start;
+row-gap: 30px;
+margin-top: -40px;
 }
+.card-n{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 100%;
+  justify-content: flex-start;
+  row-gap: 30px;  
+  }
 .visualize-button {    
   align-self: flex-end;
   width: 95px;
@@ -156,7 +154,7 @@ justify-content: flex-start;
   font-size: 12px;
   font-weight: 600;
   border: none;
-  margin-top: 24px;
+  margin-top: 4px;
 }
 .cards ul{
   display: flex;
@@ -169,7 +167,6 @@ justify-content: flex-start;
   height: 40px;
   padding: 0;
   margin: 0;  
-  gap: 0;  
 }
 
 .cards li{ 
