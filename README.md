@@ -5,31 +5,21 @@
 
 > Description the project.
 
-Sneak peak to a portfolio under construction.
+Skeleton under construction of a Portfolio website using specifuc practices for HTML & CSS.
 
 ## Built With
 
 - HTML & CSS
 
-## Live Demo (if available)
-
-https://github.com/AlucardSanin/Portfolio
-
 # My Portfolio
 
-- This is the portfolio that was done using a HTML, CSS & Javascript
-
+- I'm creating a skeleton of a webpage for a portfolio using HTML and CSS for learning objectives.
 
 ## Built With
 
 - HTML
 - CSS
 - Javascript
-
-## Live Demo (if available)
-
-[Live Demo Link](https://github.com/AlucardSanin/Portfolio)
-
 
 ## Getting Started
 
@@ -44,6 +34,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
  - Web browser and code editor of your choice
+ - 
 ### Setup
 ~~~
 git clone 
@@ -57,9 +48,6 @@ cd portfolio
 
 - GitHub: https://github.com/AlucardSanin
 - Twitter: https://twitter.com/cadivisea
-
-- LinkedIn: 
-
 - LinkedIn: https://www.linkedin.com/in/david-isea-560424236/
 
 
