@@ -1,5 +1,42 @@
 body {
   background-color: rgb(25, 23, 101);
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  background-image: url(Images/circle-1-header.svg), url(Images/circle-2-header.svg), url(Images/circle-3.svg), url(Images/circle-4.svg), url(Images/circle-5-blur.svg), url(Images/circle-6-blur.svg);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 226px 226px, 184px 184px, 380px 940px, 220px 1100px, 600px 280px, 220px 1000px;
+  background-position: top 20px left -66px, top 540px right -5px, left -140px top 1170px, right -70px top 1820px, left -200px top 3080px, right -10px top 3490px;
+}
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 44px;
+  color: #fff;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 52px;
+  color: #9490ff;
+}
+
+p {
+  width: 327px;
+  height: 170px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: left;
+  color: #c8c8d4;
 }
 
 .nav-bar {
@@ -14,8 +51,14 @@ body {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 18px;
   color: #fff;
+}
+
+.container h3 {
+  margin: auto;
+  padding-top: 0;
+  padding-bottom: 15px;
 }
 
 .menu {
@@ -23,14 +66,8 @@ body {
   height: 22.83px;
 }
 
-.ULWD {
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  left: -106px;
-  top: 97px;
-  background: #edecff;
-  filter: blur(50px);
+.container p {
+  text-align: center;
 }
 
 .container {
@@ -41,8 +78,6 @@ body {
 }
 
 .container h1 {
-  width: 327px;
-  height: 55px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -60,8 +95,6 @@ body {
 }
 
 .container #Supporting_text {
-  width: 327px;
-  height: 87px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -71,33 +104,12 @@ body {
   color: #edecff;
 }
 
-.container #pa {
-  width: 327px;
-  height: 170px;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  text-align: center;
-  color: #c8c8d4;
-}
-
-.c2 {
-  position: absolute;
-  width: 68px;
-  height: 68px;
-  left: 85%;
-  top: 495px;
-  background: #edecff;
-  filter: blur(50px);
-}
-
 .frames {
   display: flex;
   flex-wrap: wrap;
   width: 327px;
   justify-content: flex-start;
+  gap: 25%;
 }
 
 .frames ul {
@@ -108,7 +120,8 @@ body {
   font-size: 15px;
   line-height: 24px;
   list-style-type: none;
-  width: 45%;
+
+  /* width: 45%; */
   padding: 0;
   gap: 4.78px;
 }
@@ -116,4 +129,82 @@ body {
 .framestitle {
   color: #9490ff;
   font-size: 12px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 30px;
+  width: auto;
+  margin-inline: 15%;
+  justify-content: center;
+  height: auto;
+}
+
+.card-1 {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 100%;
+  justify-content: flex-start;
+  row-gap: 30px;
+  margin-top: -40px;
+}
+
+.card-n {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 100%;
+  justify-content: flex-start;
+  row-gap: 30px;
+}
+
+.visualize-button {
+  align-self: flex-end;
+  width: 95px;
+  height: 44px;
+  background-color: #7d73fc;
+  color: #edecff;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  margin-top: 4px;
+}
+
+.cards ul {
+  display: flex;
+  font-size: 15px;
+  align-items: center;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+  width: auto;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+.cards li {
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+  padding: 0 18px;
+  margin-left: 10px;
+  padding-top: 15px;
+}
+
+.cards ul li:not(:last-child) {
+  border-right: 1px solid #646369;
+}
+
+.cards ul li:first-child {
+  margin-left: 0;
+}
+
+.visualize-button:hover {
+  background: #7d73fc;
+  box-shadow: 0 8px 16px rgba(125, 115, 252, 0.48);
+}
+
+.visualize-button:active {
+  background: #5e42d7;
 }
