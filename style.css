@@ -131,7 +131,7 @@ p {
   font-size: 12px;
 }
 
-.cards {
+.cards {  
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 30px;
@@ -231,7 +231,7 @@ p {
   justify-content: center;
   align-items: center;
   gap: 24px;
-  width: 327px;
+  
 }
 input,
 textarea {
