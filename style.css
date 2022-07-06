@@ -131,7 +131,7 @@ p {
   font-size: 12px;
 }
 
-.cards {  
+.cards {
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 30px;
@@ -158,7 +158,8 @@ p {
   row-gap: 30px;
 }
 
-.visualize-button, .my-form-button {
+.visualize-button,
+.my-form-button {
   align-self: flex-end;
   width: 95px;
   height: 44px;
@@ -200,12 +201,14 @@ p {
   margin-left: 0;
 }
 
-.visualize-button:hover, .my-form-button:hover {
+.visualize-button:hover,
+.my-form-button:hover {
   background: #7d73fc;
   box-shadow: 0 8px 16px rgba(125, 115, 252, 0.48);
 }
 
-.visualize-button:active, .my-form-button:active {
+.visualize-button:active,
+.my-form-button:active {
   background: #5e42d7;
 }
 
@@ -215,6 +218,7 @@ p {
   justify-content: center;
   align-items: center;
 }
+
 .contact-us,
 .contact-quote {
   text-align: center;
@@ -231,36 +235,41 @@ p {
   justify-content: center;
   align-items: center;
   gap: 24px;
-  
 }
+
 input,
 textarea {
   width: 327px;
   padding: 8px;
 }
+
 input {
   height: 40px;
 }
+
 textarea {
   height: 148px;
   resize: none;
 }
+
 footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
+
 .my-last-media {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
+
 .my-email {
-  font-size: 20px;  
-  font-family: 'Roboto';
-  color: #EBEBFF;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #ebebff;
   text-align: center;
   height: auto;
 }
