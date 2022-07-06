@@ -216,7 +216,7 @@ p {
 .contact-us,
 .contact-quote {
   text-align: center;
-  line-height: 24px;  
+  line-height: 24px;
 }
 
 .my-form {
@@ -250,7 +250,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px; 
+  margin-top: 50px;
 }
 
 .my-last-media {
