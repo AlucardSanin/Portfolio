@@ -6,7 +6,7 @@ body {
   background-image: url(Images/circle-1-header.svg), url(Images/circle-2-header.svg), url(Images/circle-3.svg), url(Images/circle-4.svg), url(Images/circle-5-blur.svg), url(Images/circle-6-blur.svg);
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: 226px 226px, 184px 184px, 380px 940px, 220px 1100px, 600px 280px, 220px 1000px;
-  background-position: top 20px left -66px, top 540px right -5px, left -140px top 1170px, right -70px top 1820px, left -200px top 3080px, right -10px top 3490px;
+  background-position: top 20px left -6px, top 540px right -5px, left -140px top 1170px, right -70px top 1820px, left -200px top 3080px, right -10px top 3490px;
 }
 
 h3 {
@@ -28,8 +28,6 @@ h2 {
 }
 
 p {
-  width: 327px;
-  height: 170px;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -45,6 +43,19 @@ p {
   padding-top: 30px;
   align-items: baseline;
   margin-inline: 2%;
+}
+
+.nav-bar li {
+  display: inline;
+  height: 20px;
+  padding: 0 18px;
+  color: white;
+}
+
+@media only screen and  (max-width: 768px) {
+  .nav-bar #nav-links {
+    display: none;
+  }
 }
 
 .logo {
@@ -66,15 +77,13 @@ p {
   height: 22.83px;
 }
 
-.container p {
-  text-align: center;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
+  width: 95%;
+  justify-content: flex-start;
 }
 
 .container h1 {
@@ -104,24 +113,27 @@ p {
   color: #edecff;
 }
 
+.div {
+  display: flex;
+  margin-inline: 10%;
+  flex-direction: column;
+}
+
 .frames {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 327px;
-  justify-content: flex-start;
-  gap: 25%;
+  column-gap: 25%;
+  width: 80%;
 }
 
 .frames ul {
-  display: flex;
   flex-direction: column;
-  color: #f5f5ff;
+  color: #edecff;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   line-height: 24px;
   list-style-type: none;
-
-  /* width: 45%; */
   padding: 0;
   gap: 4.78px;
 }
@@ -131,23 +143,21 @@ p {
   font-size: 12px;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 30px;
-  width: auto;
-  margin-inline: 15%;
-  justify-content: center;
-  height: auto;
+.social-work {
+  background-image: url(Images/SuportinItemMobile.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 40px;
+  background-size: 80% 80%;
+  height: 157px;
 }
 
-.card-1 {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 100%;
-  justify-content: flex-start;
-  row-gap: 30px;
-  margin-top: -40px;
+.grid-container {
+  padding-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-inline: 15%;
+  justify-content: center;
 }
 
 .card-n {
@@ -168,11 +178,11 @@ p {
   font-size: 12px;
   font-weight: 600;
   border: none;
-  margin-top: 4px;
+  margin-top: 18px;
   margin-bottom: 40px;
 }
 
-.cards ul {
+.grid-container ul {
   display: flex;
   font-size: 15px;
   align-items: center;
@@ -185,7 +195,7 @@ p {
   margin: 0;
 }
 
-.cards li {
+.grid-container li {
   display: flex;
   justify-content: flex-end;
   height: 30px;
@@ -194,11 +204,11 @@ p {
   padding-top: 15px;
 }
 
-.cards ul li:not(:last-child) {
+.grid-container ul li:not(:last-child) {
   border-right: 1px solid #646369;
 }
 
-.cards ul li:first-child {
+.grid-container ul li:first-child {
   margin-left: 0;
 }
 
@@ -234,9 +244,6 @@ input,
 textarea {
   width: 327px;
   padding: 8px;
-}
-
-input {
   height: 40px;
 }
 
@@ -251,6 +258,18 @@ footer {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  margin-inline: 10%;
+}
+
+footer p {
+  text-align: center;
+  font-size: 16px;
+  color: #f5f5ff;
+  width: 347px;
+}
+
+.container p {
+  text-align: center;
 }
 
 .my-last-media {
@@ -264,4 +283,154 @@ footer {
   color: #ebebff;
   text-align: center;
   height: auto;
+}
+
+@media only screen and  (min-width: 768px) {
+  .bar {
+    display: block;
+    width: 448px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 447px;
+  }
+
+  .container h1 {
+    font-size: 90px;
+    color: #9391ff;
+  }
+
+  .frames {
+    width: 447px;
+    justify-content: center;
+  }
+
+  .social-work {
+    padding-top: 96px;
+    background-image: url(Images/Supproting-Item.svg);
+    background-repeat: no-repeat;
+    background-size: 80% 40px;
+    height: 40px;
+  }
+
+  .grid-container {
+    width: 80%;
+    margin-inline: 10%;
+    row-gap: 48px;
+  }
+
+  .card-n {
+    display: flex;
+    height: 448px;
+    flex-wrap: nowrap;
+    gap: 24px;
+  }
+
+  .card-n #img {
+    display: flex;
+    width: 57%;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+
+  .my-project-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-n #content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .card-n .visualize-button {
+    align-self: flex-start;
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+
+  .card-nr {
+    display: flex;
+    height: 448px;
+    flex-wrap: nowrap;
+    gap: 24px;
+    flex-direction: row-reverse;
+  }
+
+  .card-nr #content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .card-nr #img {
+    display: flex;
+    width: 57%;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+
+  .card-nr .visualize-button {
+    align-self: flex-start;
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+
+  .my-contact-section {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  input,
+  textarea {
+    width: 684px;
+    padding: 8px;
+    height: 40px;
+  }
+
+  textarea {
+    height: 136px;
+    resize: none;
+  }
+
+  .last-devider {
+    width: 100%;
+    height: 7.5px;
+  }
+
+  .my-contact-section p {
+    width: 684px;
+    padding-bottom: 88px;
+    text-align: center;
+  }
+
+  .div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    margin-inline: 10%;
+  }
+
+  .div .bar {
+    width: 100%;
+  }
+
+  .nav-bar .menu {
+    display: none;
+  }
+
+  .nav-bar {
+    width: 80%;
+    margin-inline: 10%;
+  }
 }
