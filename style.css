@@ -434,3 +434,18 @@ footer p {
     margin-inline: 10%;
   }
 }
+
+.card-n, .card-nr{
+  animation: slidein 3s;
+}
+
+@keyframes slidein{
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
