@@ -9,6 +9,11 @@ body {
   background-position: top 20px left -6px, top 540px right -5px, left -140px top 1170px, right -70px top 1820px, left -200px top 3080px, right -10px top 3490px;
 }
 
+ul {
+  list-style-type: none;
+  color: #edecff;
+}
+
 h3 {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -38,11 +43,12 @@ p {
 }
 
 .nav-bar {
-  display: flex;
+  display: flex;  
   justify-content: space-between;
   padding-top: 30px;
   align-items: baseline;
-  margin-inline: 2%;
+  width: 90%;
+  margin-inline: 5%;
 }
 
 .nav-bar li {
@@ -113,6 +119,48 @@ p {
   color: #edecff;
 }
 
+a:hover {
+  color: #9391ff;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.mobile-menu {
+  position: fixed;
+  display: none;
+  background-color: rgb(25, 23, 101);
+  width: 100%;
+  height: 100%;
+  background-image: url(Images/shapes\ mobile\ menu.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: top 0 left 0, top 50px left 340px;
+  background-size: cover;
+  animation: slidein 0.5s;
+}
+
+#close {
+  padding-left: 85%;
+}
+
+.mobile-menu li {
+  font-size: 24px;
+  margin-block: 32px;
+  background-image: url(Images/List_Item_Vector.svg);
+  background-repeat: no-repeat;
+  background-position: left 90% top 2px;
+}
+
+.mobile-menu ul {
+  padding-top: 92px;
+}
+
 .div {
   display: flex;
   margin-inline: 10%;
@@ -129,11 +177,9 @@ p {
 
 .frames ul {
   flex-direction: column;
-  color: #edecff;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   line-height: 24px;
-  list-style-type: none;
   padding: 0;
   gap: 4.78px;
 }
@@ -435,10 +481,12 @@ footer p {
   }
 }
 
-.card-n, .card-nr{
-  animation: slidein 3s;  
+.card-n,
+.card-nr {
+  animation: slidein 3s;
 }
-@keyframes slidein{
+
+@keyframes slidein {
   from {
     margin-left: 100%;
     width: 300%;
@@ -446,6 +494,18 @@ footer p {
 
   to {
     margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes slideout {
+  from {
+    margin-left: 0%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 100%;
     width: 100%;
   }
 }

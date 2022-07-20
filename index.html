@@ -11,23 +11,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Isea Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">    
 </head>
 <body>
     <header class="main-header">
-        <nav class="nav-bar">
-          <a class="logo">AlucardSanin</a>
-          <img class="menu" src="/Images/Unionw.svg " alt="Union" />
+      <section id="menu" class="mobile-menu" style="display: none;">
+          <ul>
+            <a href="#"><img id="close" src="Images/x.svg"></a>
+            <a href="#headline"><li id="portf">Portfolio</li></a>          
+            <a href="#about"><li id="abo">About</li></a>
+            <a href="#contact"><li id="cont">Contact</li></a>
+          </ul>
+        </section>
+        <nav class="nav-bar" id="navbar">
+          <p class="logo">AlucardSanin</p>
+          <a href="#"><img class="menu" type="button" src="Images/Unionw.svg" alt="Union"/></a>
           <ul id="nav-links">
-            <li>Portfolio</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li><img src="Images/mail.svg" alt="" class="mail"></li>
+            <a href="#headline"><li>Portfolio </li></a>
+            <a href="#about"><li>About</li></a>
+            <a href="#contact"><li>Contact</li></a>
+            <li><img src="Images/mail.svg" alt="Mail" class="mail"></li>
           </ul>
         </nav>
-       
+     
       </header>
-    <section class="headline">
+    <section class="headline" id="headline">
       <div class="container">
           <h1 id="Name">David Isea</h1>
           <h3 id="Supporting_text">Currently in my journey for greatness!</h3>
@@ -64,7 +72,7 @@
         </div>      
     </section>
         <section class="social-work"></section>
-    <div class="div"><h2>MY RECENT WORK</h2>
+    <a id="about"><div class="div"><h2>MY RECENT WORK</h2></a>
 <img class="bar" src="Images/bar.svg" alt ="divider"></div>
 <div class="grid-container">    
     <div class="card-n">
@@ -141,6 +149,7 @@
       </div>
 </div>
 <footer>
+<a id="contact"></a>
 <form class="my-contact-section" action="https://formspree.io/f/mpzbgdrg" method="POST">
     <h2 class="contact-us">CONTACT US</h2>
     <p>If you have an application you are interested in developing, a feature that you need built or a project that needs coding. I'd love to help with it </p>
@@ -163,5 +172,6 @@
     <a href="#"><img src="Images/Social Media.png" alt="#" class="icon"></a>
     <p class="my-email">AlucardSanin@gmail.com</p>
  </footer>  
+ <script src="app.js"></script>
 </body>
 </html>
