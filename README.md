@@ -7,15 +7,15 @@ https://alucardsanin.github.io/Portfolio/
 
 > Description the project.
 
-Skeleton under construction of a Portfolio website using specifuc practices for HTML & CSS.
+Skeleton under construction of a Portfolio website using specific practices for HTML, CSS & JS.
 
 ## Built With
 
-- HTML & CSS
+- HTML, CSS & JS 
 
 # My Portfolio
 
-- I'm creating a skeleton of a webpage for a portfolio using HTML and CSS for learning objectives.
+- I'm creating a webpage for a portfolio using HTML, CSS & JS for learning purpose.
 
 ## Built With
 
@@ -55,7 +55,6 @@ cd portfolio
  - 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
 
 ## Show your support
 

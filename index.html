@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Isea Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<title>David Isea Portfolio</title>
+<link rel="stylesheet" href="style.css">    
 </head>
 <body>
     <header class="main-header">
-        <nav class="nav-bar">
-          <a class="logo">AlucardSanin</a>
-          <img class="menu" src="Images/Unionw.svg " alt="Union" />
+      <div id="menu" class="mobile-menu">
+          <ul>
+            <li id="cls"><a href="#"><img id="close" src="Images/x.svg" alt="Close"></a></li>
+            <li id="portf"><a href="#about">Portfolio</a></li>     
+            <li id="abo"><a href="#headline">About</a></li>
+            <li id="cont"><a href="#contact">Contact</a></li>
+          </ul>
+      </div>
+      <nav class="nav-bar" id="navbar">
+          <p class="logo">AlucardSanin</p>
+          <a href="#"><img class="menu" src="Images/Unionw.svg" alt="Union"/></a>
           <ul id="nav-links">
-            <li>Portfolio</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li><img src="Images/mail.svg" alt="" class="mail"></li>
+            <li><a href="#about">Portfolio</a></li>
+            <li><a href="#headline">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><img src="Images/mail.svg" alt="Mail" class="mail"></li>
           </ul>
         </nav>
-       
+     
       </header>
-    <section class="headline">
+    <section class="headline" id="headline">
       <div class="container">
           <h1 id="Name">David Isea</h1>
           <h3 id="Supporting_text">Currently in my journey for greatness!</h3>
@@ -35,7 +42,7 @@
           some of my work and experience! If you like what you see and have a 
           project you need coded, don’t hestiate to contact me.</p>
           <img class="bar" src="Images/bar.svg" alt ="divider">          
-          <article class="frames">
+          <div class="frames">
            <ul>
             <li class="framestitle">Language</li>
             <li>Javascript</li>
@@ -59,18 +66,16 @@
             <li>Gitlab</li>            
             <li>Terminal</li>            
            </ul>
-          </article>
+          </div>
           <img class="bar" src="Images/bar.svg" alt ="divider">
         </div>      
-    </section>
-        <section class="social-work"></section>
-    <div class="div"><h2>MY RECENT WORK</h2>
-<img class="bar" src="Images/bar.svg" alt ="divider"></div>
+    </section>        
+    <div class="div"><a id="about"><h2>MY RECENT WORK</h2></a>
+    <img class="bar" src="Images/bar.svg" alt ="divider">
+    </div>
 <div class="grid-container">    
-    <div class="card-n">
-      <div id="img">
-      <img src="Images/Img Placeholder.png" alt="#" class="my-project-image">
-      </div>
+    <div class="card-n">      
+      <img src="Images/Img_Placeholder.png" alt="#" class="my-project-image">
       <div id="content">
       <h3 class="my-work-title">Multi-Post Stories</h3>
       <p class="my-work-description">A daily selection of privately personalized reads;
@@ -85,11 +90,9 @@
       <button class="visualize-button" type="button">See Project</button>
     </div>
     </div>
-    <div class="card-nr">
-        <div id="img">
-        <img src="Images/Img Placeholder.png" alt="#" class="my-project-image">
-        </div>
-        <div id="content">
+    <div class="card-nr">       
+        <img src="Images/Img_Placeholder.png" alt="#" class="my-project-image">
+        <div id="content3">
         <h3 class="my-work-title">Multi-Post Stories</h3>
         <p class="my-work-description">A daily selection of privately personalized reads;
         no accounts or sign-ups required. has been the industry's standard dummy text ever 
@@ -103,11 +106,9 @@
         <button class="visualize-button" type="button">See Project</button>
       </div>
       </div>
-      <div class="card-n">
-        <div id="img">
-        <img src="Images/Img Placeholder.png" alt="#" class="my-project-image">
-        </div>
-        <div id="content">
+      <div class="card-n">        
+        <img src="Images/Img_Placeholder.png" alt="#" class="my-project-image">
+        <div id="content2">
         <h3 class="my-work-title">Multi-Post Stories</h3>
         <p class="my-work-description">A daily selection of privately personalized reads;
         no accounts or sign-ups required. has been the industry's standard dummy text ever 
@@ -121,11 +122,9 @@
         <button class="visualize-button" type="button">See Project</button>
       </div>
       </div>
-      <div class="card-nr">
-        <div id="img">
-        <img src="Images/Img Placeholder.png" alt="#" class="my-project-image">
-        </div>
-        <div id="content">
+      <div class="card-nr">        
+        <img src="Images/Img_Placeholder.png" alt="#" class="my-project-image">
+        <div id="content4">
         <h3 class="my-work-title">Multi-Post Stories</h3>
         <p class="my-work-description">A daily selection of privately personalized reads;
         no accounts or sign-ups required. has been the industry's standard dummy text ever 
@@ -141,6 +140,7 @@
       </div>
 </div>
 <footer>
+<a id="contact"></a>
 <form class="my-contact-section" action="https://formspree.io/f/mpzbgdrg" method="POST">
     <h2 class="contact-us">CONTACT US</h2>
     <p>If you have an application you are interested in developing, a feature that you need built or a project that needs coding. I'd love to help with it </p>
@@ -160,8 +160,9 @@
       </ul>
   </form>  
     <img src="Images/bar.svg" alt="#" class="last-devider">    
-    <a href="#"><img src="Images/Social Media.png" alt="#" class="icon"></a>
+    <a href="#"><img src="Images/Social_Media.png" alt="#" class="icon"></a>
     <p class="my-email">AlucardSanin@gmail.com</p>
  </footer>  
+ <script src="app.js"></script>
 </body>
 </html>
