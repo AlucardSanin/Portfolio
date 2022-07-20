@@ -193,14 +193,6 @@ a:visited {
   font-size: 12px;
 }
 
-.social-work {
-  background-image: url(Images/SuportinItemMobile.svg);
-  background-repeat: no-repeat;
-  background-position: 50% 40px;
-  background-size: 80% 80%;
-  height: 157px;
-}
-
 .grid-container {
   padding-top: 48px;
   display: grid;
@@ -379,7 +371,7 @@ footer p {
     gap: 24px;
   }
 
-  .card-n #img {
+  .card-n img {
     display: flex;
     width: 57%;
     height: 100%;
@@ -392,6 +384,13 @@ footer p {
   }
 
   .card-n #content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .card-n #content2 {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -412,14 +411,21 @@ footer p {
     flex-direction: row-reverse;
   }
 
-  .card-nr #content {
+  .card-nr #content3 {
     display: flex;
     flex-direction: column;
     flex: 1;
     justify-content: space-between;
   }
 
-  .card-nr #img {
+  .card-nr #content4 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .card-nr img {
     display: flex;
     width: 57%;
     height: 100%;
