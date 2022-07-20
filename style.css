@@ -481,12 +481,20 @@ footer p {
   }
 }
 
+
 .card-n,
 .card-nr {
   animation: slidein 3s;
 }
 
 @keyframes slidein {
+
+.card-n, .card-nr{
+  animation: slidein 3s;
+}
+
+@keyframes slidein{
+
   from {
     margin-left: 100%;
     width: 300%;
@@ -496,6 +504,7 @@ footer p {
     margin-left: 0%;
     width: 100%;
   }
+
 }
 
 @keyframes slideout {
@@ -508,4 +517,6 @@ footer p {
     margin-left: 100%;
     width: 100%;
   }
+}
+
 }
