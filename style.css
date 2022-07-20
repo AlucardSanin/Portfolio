@@ -43,7 +43,7 @@ p {
 }
 
 .nav-bar {
-  display: flex;  
+  display: flex;
   justify-content: space-between;
   padding-top: 30px;
   align-items: baseline;
@@ -155,6 +155,10 @@ a:visited {
   background-image: url(Images/List_Item_Vector.svg);
   background-repeat: no-repeat;
   background-position: left 90% top 2px;
+}
+
+.mobile-menu #cls {
+  background-image: none;
 }
 
 .mobile-menu ul {
@@ -481,20 +485,12 @@ footer p {
   }
 }
 
-
 .card-n,
 .card-nr {
   animation: slidein 3s;
 }
 
 @keyframes slidein {
-
-.card-n, .card-nr{
-  animation: slidein 3s;
-}
-
-@keyframes slidein{
-
   from {
     margin-left: 100%;
     width: 300%;
@@ -504,19 +500,4 @@ footer p {
     margin-left: 0%;
     width: 100%;
   }
-
-}
-
-@keyframes slideout {
-  from {
-    margin-left: 0%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 100%;
-    width: 100%;
-  }
-}
-
 }
