@@ -42,7 +42,7 @@ p {
   color: #c8c8d4;
 }
 
-#Val_Err{
+#Val_Err {
   display: none;
   position: absolute;
   padding-top: 250px;
@@ -452,7 +452,6 @@ footer {
     display: flex;
     flex-direction: row;
     column-gap: 78px;
-   
   }
 
   .nav-links li a {
