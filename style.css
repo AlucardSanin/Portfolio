@@ -420,7 +420,7 @@ footer {
   font-size: 16px;
   line-height: 30px;
   text-align: center;
-  color: #FFFFFF;  
+  color: #fff;
 }
 
 .details #Buttons {
@@ -430,12 +430,16 @@ footer {
   padding-bottom: 50px;
 }
 
-
 @media only screen and  (min-width: 768px) {
   .bar {
     display: block;
     width: 80%;
     margin-inline: 10%;
+  }
+
+  .details #Pop_Img {
+    max-width: 90%;
+    max-height: 60%;
   }
 
   .details #Buttons {
