@@ -50,7 +50,7 @@ for (let i=0; i<Cards.length; i++)
   card.classList.add(Cards[i].class);  
   Grid.appendChild(card);     
   card.innerHTML=`
-  <img src="Images/Img_Placeholder.png" alt="#" class="my-project-image">
+  <img src="Images/Snapshoot_Portfolio.png" alt="#" class="my-project-image">
   <div id="content">
   <h3 class="my-work-title">${Cards[i].title}</h3>    
   <p class="my-work-description">${Cards[i].description}</p>
