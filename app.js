@@ -98,7 +98,7 @@ document.querySelector('.nav-bar').style.display = 'none';
   const close = document.getElementById('close');
   close.addEventListener('click', () => {
   body.removeChild(detail);
-  document.querySelector('.nav-bar').style.display = 'flex';
+  document.querySelector('.navbar').style.display = 'flex';
   });
 });
 }
