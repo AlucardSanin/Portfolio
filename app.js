@@ -106,16 +106,18 @@ document.querySelector('.nav-bar').style.display = 'none';
   const mail = document.getElementById('email');
   var mailformat = /^[a-z\-0-9\.\*\#\$\!\~\%\^\&\-\+\?\|]+@+[a-z\-0-9]+(.com)$/;
   const form = document.getElementById('Submit');
+  const submit = document.getElementById('submit_btn');
+
 
   form.addEventListener('submit', function (event) {
   if (mail.value.match(mailformat)) {
+    document.getElementById('Val_Err').style.display = 'none';  
     mail.setCustomValidity("Way to go!");
     mail.reportValidity(); 
       
   } else {
     event.preventDefault();
-    mail.setCustomValidity("Only accepts lowercase characters!");
-    mail.reportValidity();        
+    document.getElementById('Val_Err').style.display = 'block';    
   }
 });
 
