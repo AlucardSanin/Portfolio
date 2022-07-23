@@ -439,14 +439,14 @@ footer {
 
   .details #Pop_Img {
     max-width: 90%;
-    max-height: 60%;
+    max-height: 50%;
   }
 
   .details #Buttons {
     display: flex;
     flex-direction: row;
     column-gap: 78px;
-    padding-bottom: 50px;
+   
   }
 
   .nav-links li a {
