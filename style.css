@@ -42,6 +42,12 @@ p {
   color: #c8c8d4;
 }
 
+#Val_Err {
+  display: none;
+  position: absolute;
+  padding-top: 250px;
+}
+
 .nav-bar {
   display: flex;
   justify-content: space-between;
@@ -439,14 +445,13 @@ footer {
 
   .details #Pop_Img {
     max-width: 90%;
-    max-height: 60%;
+    max-height: 50%;
   }
 
   .details #Buttons {
     display: flex;
     flex-direction: row;
     column-gap: 78px;
-    padding-bottom: 50px;
   }
 
   .nav-links li a {
