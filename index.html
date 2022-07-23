@@ -72,7 +72,7 @@
     <div class="div" id="about"><h2>MY RECENT WORK</h2></div>
     <img class="bar" src="Images/bar.svg" alt ="divider">     
 <footer class="footer" id="contact">
-<form class="my-contact-section" action="https://formspree.io/f/mpzbgdrg" method="POST">
+<form class="my-contact-section" id="Submit" action="https://formspree.io/f/mpzbgdrg" method="POST">
     <h2 class="contact-us">CONTACT US</h2>
     <p>If you have an application you are interested in developing, a feature that you need built or a project that needs coding. I'd love to help with it </p>
       <ul class="my-form">
@@ -80,13 +80,13 @@
               <input type="text" name="user_name" placeholder="Text input" maxlength="30" required>
           </li>
           <li>
-              <input type="email" name="user_email" placeholder="yourname@example.com" required>
+              <input type="email" id="email" name="user_email" placeholder="yourname@example.com" required>
           </li>
           <li>
              <textarea name="user_name" id="msg" maxlength="500" placeholder="Enter text here" required></textarea>
           </li>
           <li>
-              <button class="my-form-button" type="submit">See project</button>
+              <button class="my-form-button" type="submit">Submit</button>
           </li>
       </ul>
   </form>  
