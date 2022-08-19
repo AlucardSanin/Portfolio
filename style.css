@@ -387,14 +387,14 @@ footer {
   top: 0;
   backdrop-filter: blur(10px);
   margin-inline: 5%;
-  margin-top: 2.5%;
+  margin-block: 5%;
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.16);
   border: 1px solid #fff;
   animation: slidein 3s;
   width: 90%;
-  height: 90%;
+  height: 95%;
   justify-content: space-between;
 }
 
@@ -415,11 +415,6 @@ footer {
   color: #fff;
 }
 
-.details #Pop_Img {
-  max-width: 90%;
-  max-height: 40%;
-}
-
 .details p {
   width: 70%;
   font-family: 'Roboto', sans-serif;
@@ -438,16 +433,16 @@ footer {
   padding-bottom: 50px;
 }
 
+.modal-image{
+  max-height: 60%;
+  width: 60%;
+}
+
 @media only screen and  (min-width: 768px) {
   .bar {
     display: block;
     width: 80%;
     margin-inline: 10%;
-  }
-
-  .details #Pop_Img {
-    max-width: 90%;
-    max-height: 50%;
   }
 
   .details #Buttons {
@@ -527,6 +522,23 @@ footer {
     width: 57%;
     height: 100%;
     flex-wrap: wrap;
+  }
+
+  .details {
+    display: flex;
+    position: fixed;
+    top: 0;
+    backdrop-filter: blur(10px);
+    margin-inline: 5%;
+    margin-top: 2.5%;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.16);
+    border: 1px solid #fff;
+    animation: slidein 3s;
+    width: 90%;
+    height: 90%;
+    justify-content: space-between;
   }
 
   .card-n #content {
