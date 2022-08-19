@@ -91,6 +91,7 @@ footer p {
   color: #fff;
 }
 
+
 .container h3 {
   margin: auto;
   padding-top: 0;
@@ -385,7 +386,8 @@ footer {
   position: fixed;
   top: 0;
   backdrop-filter: blur(10px);
-  margin: 5%;
+  margin-inline: 5%;
+  margin-top: 2.5%;
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.16);
@@ -457,6 +459,11 @@ footer {
   .nav-links li a {
     color: #5e42d7;
     font-weight: 600;
+  }
+
+  .modal-image{
+    max-height: 60%;
+    width: 60%;
   }
 
   .container {

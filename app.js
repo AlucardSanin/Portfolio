@@ -1,12 +1,13 @@
 const Cards = [
   {
     id: 1,
-    title: 'Batman',   
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with the releaLorem Ipsum is simply dummy text of the printing and typesetting  ever since the 1500s, when an unknown printer took a galley of type veris lapoa todoe.',
+    title: 'A view to the past: LBA Game',   
+    description: 'A game from my birth year 1994. Little Big Adventure represents my childhood, not just as a game but my first sigh of falling in love with softwares.',
     tags: ['css', 'html', 'bootsrap', 'Ruby'],
-    link: 'https://alucardsanin.github.io/Portfolio/',
-    source: 'https://github.com/AlucardSanin/Portfolio',
+    link: 'https://alucardsanin.github.io/First_Capstone/index.html',
+    source: 'https://github.com/AlucardSanin/First_Capstone',
     class: 'card-n',
+    image: './Project-Images/Captura.jpg',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const Cards = [
     link: 'https://alucardsanin.github.io/Portfolio/',
     source: 'https://github.com/AlucardSanin/Portfolio',
     class: 'card-nr',
+    image: './Images/Snapshoot_Portfolio.png',
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const Cards = [
     link: 'https://alucardsanin.github.io/Portfolio/',
     source: 'https://github.com/AlucardSanin/Portfolio',
     class: 'card-n',
+    image: './Images/Snapshoot_Portfolio.png',
     },
   {
     id: 4,
@@ -34,6 +37,7 @@ const Cards = [
     link: 'https://alucardsanin.github.io/Portfolio/',
     source: 'https://github.com/AlucardSanin/Portfolio',
     class: 'card-nr',
+    image: './Images/Snapshoot_Portfolio.png',
   },
 ];
 
@@ -50,7 +54,7 @@ for (let i=0; i<Cards.length; i++)
   card.classList.add(Cards[i].class);  
   Grid.appendChild(card);     
   card.innerHTML=`
-  <img src="Images/Snapshoot_Portfolio.png" alt="#" class="my-project-image">
+  <img src="${Cards[i].image}" alt="#" class="my-project-image">
   <div id="content">
   <h3 class="my-work-title">${Cards[i].title}</h3>    
   <p class="my-work-description">${Cards[i].description}</p>
@@ -76,7 +80,7 @@ detail.innerHTML=`
 <h2>${Cards[i].title}</h2>
 <img id="close" src="Images/x.svg" alt="Close">
 </div>
-<img src="Images/Snapshoot_Portfolio.png" id="Pop_Img" alt="Image description">
+<img src="${Cards[i].image}" alt="#" class="modal-image">
 <p>${Cards[i].description}</p>
 <div id="Cwt">
   <ul class="my-work-tools">
@@ -87,18 +91,18 @@ detail.innerHTML=`
   </ul>  
 </div>
 <div id="Buttons">
-  <button class="vbutton-live" type="button"><a href="${Cards[i].link}">See Live</a></button>
-  <button class="vbutton-source" type="button"><a href="${Cards[i].source}">See Source</a></button>
+  <button class="vbutton-live" type="button"><a href="${Cards[i].link}" target="_blank">See Live</a></button>
+  <button class="vbutton-source" type="button"><a href="${Cards[i].source}" target="_blank">See Source</a></button>
 </div>
 `;
 body.appendChild(detail);
 
-document.querySelector('.nav-bar').style.display = 'none';
+document.querySelector('.main-header').style.display = 'none';
 
   const close = document.getElementById('close');
   close.addEventListener('click', () => {
   body.removeChild(detail);
-  document.querySelector('.nav-bar').style.display = 'flex';
+  document.querySelector('.main-header').style.display = 'flex';
   });
 });
 }
