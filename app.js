@@ -7,7 +7,7 @@ const Cards = [
     link: 'https://alucardsanin.github.io/First_Capstone/index.html',
     source: 'https://github.com/AlucardSanin/First_Capstone',
     class: 'card-n',
-    image: './Project-Images/Captura.jpg',
+    image: './Images/Captura.jpg',
   },
   {
     id: 2,
