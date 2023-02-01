@@ -32,12 +32,12 @@ const Cards = [
   {
     id: 4,
     title: 'Ironman',    
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it 1960s with the releaLorem Ipsum is simply dummy text of the printing and typesetting  ever since the 1500s, when an unknown printer took a galley of type veris lapoa todoe.',
-    tags: ['css', 'html', 'bootsrap', 'Ruby'],
-    link: 'https://alucardsanin.github.io/Portfolio/',
+    description: 'Simple web app that fetch data from an API to display different types of meals.',
+    tags: ['css', 'html', 'javascript', 'API'],
+    link: 'https://github.com/rebel216/Capstone_Javascript',
     source: 'https://github.com/AlucardSanin/Portfolio',
     class: 'card-nr',
-    image: './Images/Snapshoot_Portfolio.png',
+    image: './Images/CapturaMeals.jpg',
   },
 ];
 
