@@ -1,0 +1,165 @@
+@page "/work/{slug}"
+@inject NavigationManager Nav
+
+@if (_project is null)
+{
+    <PageTitle>Project not found — David Isea</PageTitle>
+
+    <section class="section section--narrow">
+        <div class="container empty-state">
+            <h1>That project moved</h1>
+            <p>The case study you are looking for is not here. Everything I have shipped is on the home page.</p>
+            <a class="button button--primary" href="/#work">
+                <span>Back to the work</span>
+                <Icon Name="arrow-right" Size="16" />
+            </a>
+        </div>
+    </section>
+}
+else
+{
+    <PageTitle>@_project.Name — case study by David Isea</PageTitle>
+
+    <article class="case" style="--accent:@_project.Accent">
+        <header class="case__hero">
+            <div class="case__hero-glow" aria-hidden="true"></div>
+            <div class="container">
+                <a class="case__back" href="/#work">
+                    <Icon Name="arrow-right" Size="16" Class="case__back-icon" />
+                    <span>All work</span>
+                </a>
+
+                <p class="case__meta">
+                    <span class="chip chip--accent">@_project.KindLabel</span>
+                    <span>@_project.Period</span>
+                    <span>·</span>
+                    <span>@_project.Role</span>
+                </p>
+
+                <h1 class="case__title">@_project.Name</h1>
+                <p class="case__tagline">@_project.Tagline</p>
+
+                <div class="case__links">
+                    @foreach (var link in _project.Links)
+                    {
+                        <a class="button @(link.Icon == "external" ? "button--primary" : "button--ghost")"
+                           href="@link.Url" target="_blank" rel="noopener noreferrer">
+                            <Icon Name="@link.Icon" Size="16" />
+                            <span>@link.Label</span>
+                        </a>
+                    }
+                </div>
+            </div>
+        </header>
+
+        @if (_project.Shot is not null)
+        {
+            <div class="container">
+                <figure class="case__shot" data-reveal>
+                    <img src="@_project.Shot" alt="@($"Screenshot of {_project.Name}")" width="1200" height="750" />
+                    <figcaption>@_project.Name, live in production</figcaption>
+                </figure>
+            </div>
+        }
+
+        <div class="container case__grid">
+            <div class="case__main">
+                <p class="case__summary" data-reveal>@_project.Summary</p>
+
+                @foreach (var block in _project.CaseStudy)
+                {
+                    <section class="case__block" data-reveal>
+                        <h2>@block.Title</h2>
+                        <p>@block.Detail</p>
+                    </section>
+                }
+
+                @if (_project.Highlights.Count > 0)
+                {
+                    <section class="case__block" data-reveal>
+                        <h2>What is inside</h2>
+                        <ul class="case__list">
+                            @foreach (var highlight in _project.Highlights)
+                            {
+                                <li>
+                                    <Icon Name="check" Size="16" />
+                                    <span>@highlight</span>
+                                </li>
+                            }
+                        </ul>
+                    </section>
+                }
+            </div>
+
+            <aside class="case__aside">
+                <div class="case__panel" data-reveal>
+                    <h3>Stack</h3>
+                    <ul class="chips">
+                        @foreach (var tech in _project.Stack)
+                        {
+                            <li class="chip">@tech</li>
+                        }
+                    </ul>
+                </div>
+
+                @if (_project.Metrics.Count > 0)
+                {
+                    <div class="case__panel" data-reveal>
+                        <h3>At a glance</h3>
+                        <ul class="case__metrics">
+                            @foreach (var metric in _project.Metrics)
+                            {
+                                <li>@metric</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                <div class="case__panel case__panel--cta" data-reveal>
+                    <h3>Need something like this?</h3>
+                    <p>I can take a product from an empty repository to a signed invoice in production.</p>
+                    <a class="button button--primary button--block" href="/#contact">
+                        <span>Start a project</span>
+                        <Icon Name="arrow-right" Size="16" />
+                    </a>
+                </div>
+            </aside>
+        </div>
+
+        @if (_next is not null)
+        {
+            <div class="container">
+                <a class="case__next" href="@($"/work/{_next.Slug}")" style="--accent:@_next.Accent">
+                    <span class="case__next-label">Next project</span>
+                    <span class="case__next-name">@_next.Name</span>
+                    <span class="case__next-tagline">@_next.Tagline</span>
+                    <Icon Name="arrow-right" Size="22" Class="case__next-arrow" />
+                </a>
+            </div>
+        }
+    </article>
+}
+
+@code {
+    [Parameter] public string Slug { get; set; } = string.Empty;
+
+    private Project? _project;
+    private Project? _next;
+
+    protected override void OnParametersSet()
+    {
+        _project = SiteData.FindProject(Slug);
+
+        if (_project is null)
+        {
+            _next = null;
+            return;
+        }
+
+        var featured = SiteData.Featured.ToArray();
+        var index = Array.FindIndex(featured, p => p.Slug == _project.Slug);
+        _next = index >= 0 && featured.Length > 1
+            ? featured[(index + 1) % featured.Length]
+            : null;
+    }
+}

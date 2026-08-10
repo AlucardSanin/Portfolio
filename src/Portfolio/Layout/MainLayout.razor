@@ -1,0 +1,71 @@
+﻿@inherits LayoutComponentBase
+@implements IAsyncDisposable
+@inject InteractionService Interaction
+@inject ThemeService Theme
+@inject NavigationManager Nav
+
+<div class="page">
+    <div class="page__noise" aria-hidden="true"></div>
+    <div class="page__spot" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <NavBar ActiveSection="@_activeSection" />
+
+    <main id="main">
+        @Body
+    </main>
+
+    <Footer />
+</div>
+
+@code {
+    private DotNetObjectReference<MainLayout>? _selfReference;
+    private string? _activeSection;
+    private bool _hydrateQueued = true;
+
+    protected override void OnInitialized()
+    {
+        Nav.LocationChanged += OnLocationChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Theme.InitializeAsync();
+            _selfReference = DotNetObjectReference.Create(this);
+        }
+
+        if (!_hydrateQueued) return;
+        _hydrateQueued = false;
+
+        await Interaction.HydratePageAsync();
+        if (_selfReference is not null)
+        {
+            await Interaction.ObserveSectionsAsync(_selfReference);
+        }
+    }
+
+    [JSInvokable]
+    public void OnSectionChanged(string sectionId)
+    {
+        if (_activeSection == sectionId) return;
+        _activeSection = sectionId;
+        StateHasChanged();
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs args)
+    {
+        _activeSection = null;
+        _hydrateQueued = true;
+        StateHasChanged();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        Nav.LocationChanged -= OnLocationChanged;
+        _selfReference?.Dispose();
+        await ValueTask.CompletedTask;
+    }
+}

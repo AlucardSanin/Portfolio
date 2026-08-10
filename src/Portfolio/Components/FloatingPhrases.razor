@@ -1,0 +1,47 @@
+@* "Frases en el aire" — phrases that drift slowly across the background. *@
+
+<div class="air" aria-hidden="true">
+    @foreach (var phrase in _phrases)
+    {
+        <span class="air__phrase" style="@phrase.Style">@phrase.Text</span>
+    }
+</div>
+
+@code {
+    private sealed record AirPhrase(string Text, string Style);
+
+    [Parameter] public int Count { get; set; } = 14;
+    [Parameter] public int Seed { get; set; } = 7;
+
+    private readonly List<AirPhrase> _phrases = [];
+
+    protected override void OnParametersSet()
+    {
+        _phrases.Clear();
+
+        var random = new Random(Seed);
+        var pool = SiteData.AirPhrases.OrderBy(_ => random.Next()).ToArray();
+
+        for (var i = 0; i < Math.Min(Count, pool.Length); i++)
+        {
+            // Spread the phrases across lanes so they never bunch up in one corner.
+            var lane = (double)i / Math.Min(Count, pool.Length);
+            var top = 4 + lane * 88 + random.NextDouble() * 6;
+            var left = random.NextDouble() * 78;
+            var duration = 26 + random.NextDouble() * 26;
+            var delay = -random.NextDouble() * duration;
+            var drift = 12 + random.NextDouble() * 26;
+            var scale = 0.72 + random.NextDouble() * 0.7;
+            var opacity = 0.10 + random.NextDouble() * 0.22;
+            var rotate = -8 + random.NextDouble() * 16;
+
+            var style =
+                $"top:{top:0.##}%;left:{left:0.##}%;" +
+                $"--drift:{drift:0.##}vmin;--spin:{rotate:0.##}deg;" +
+                $"--dur:{duration:0.##}s;--delay:{delay:0.##}s;" +
+                $"--scale:{scale:0.##};--air-opacity:{opacity:0.###};";
+
+            _phrases.Add(new AirPhrase(pool[i], style));
+        }
+    }
+}

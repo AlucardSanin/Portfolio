@@ -1,0 +1,31 @@
+<section class="section section--about" id="about">
+    <div class="container">
+        <SectionHeading Index="02"
+                        Kicker="About"
+                        Title="I like the problems nobody puts on a landing page" />
+
+        <div class="about">
+            <div class="about__text" data-reveal>
+                <p class="about__lead">@SiteData.AboutLead</p>
+                <p>@SiteData.AboutBody</p>
+
+                <ul class="about__facts">
+                    <li><Icon Name="code" Size="18" /><span>Writing C# every day, JavaScript when it earns its place</span></li>
+                    <li><Icon Name="map-pin" Size="18" /><span>Based in Venezuela, working with teams in Switzerland, the US and LATAM</span></li>
+                    <li><Icon Name="bolt" Size="18" /><span>Comfortable owning a feature end to end: schema, service, UI, deploy</span></li>
+                    <li><Icon Name="mail" Size="18" /><span>Fluent Spanish, working English — daily async communication</span></li>
+                </ul>
+            </div>
+
+            <div class="about__stats" data-reveal>
+                @foreach (var stat in SiteData.Stats)
+                {
+                    <div class="stat">
+                        <span class="stat__value" data-count="@stat.Value">0</span>
+                        <span class="stat__label">@stat.Label</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

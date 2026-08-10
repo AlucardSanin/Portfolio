@@ -1,0 +1,141 @@
+@implements IDisposable
+@inject NavigationManager Nav
+@inject InteractionService Interaction
+@inject ThemeService Theme
+
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="navbar @(_menuOpen ? "navbar--open" : null)">
+    <nav class="navbar__inner" aria-label="Main">
+        <a class="brand" href="/" @onclick="GoHome" @onclick:preventDefault>
+            <span class="brand__mark" aria-hidden="true">DI</span>
+            <span class="brand__text">
+                <strong>@SiteData.Name</strong>
+                <small>@SiteData.Role</small>
+            </span>
+        </a>
+
+        <ul class="navbar__links">
+            @foreach (var item in Sections)
+            {
+                <li>
+                    <button type="button"
+                            class="navlink @(ActiveSection == item.Id ? "is-active" : null)"
+                            @onclick="() => GoToSection(item.Id)">
+                        <span class="navlink__index">@item.Index</span>
+                        <span class="navlink__label">@item.Label</span>
+                    </button>
+                </li>
+            }
+        </ul>
+
+        <div class="navbar__actions">
+            <button type="button" class="icon-button" @onclick="ToggleTheme"
+                    aria-label="@(Theme.Current == ThemeService.Dark ? "Switch to light mode" : "Switch to dark mode")"
+                    title="@(Theme.Current == ThemeService.Dark ? "Light mode" : "Dark mode")">
+                <Icon Name="@(Theme.Current == ThemeService.Dark ? "sun" : "moon")" Size="18" />
+            </button>
+
+            <button type="button" class="button button--primary navbar__cta" @onclick="@(() => GoToSection("contact"))">
+                <span>Hire me</span>
+                <Icon Name="arrow-right" Size="16" />
+            </button>
+
+            <button type="button" class="icon-button navbar__burger" @onclick="ToggleMenu"
+                    aria-expanded="@_menuOpen" aria-label="@(_menuOpen ? "Close menu" : "Open menu")">
+                <Icon Name="@(_menuOpen ? "close" : "menu")" Size="20" />
+            </button>
+        </div>
+    </nav>
+</header>
+
+<div class="mobile-menu @(_menuOpen ? "is-open" : null)" aria-hidden="@(!_menuOpen)">
+    <ul class="mobile-menu__links">
+        @foreach (var item in Sections)
+        {
+            <li>
+                <button type="button" @onclick="() => GoToSection(item.Id)">
+                    <span class="mobile-menu__index">@item.Index</span>
+                    @item.Label
+                </button>
+            </li>
+        }
+    </ul>
+    <div class="mobile-menu__socials">
+        @foreach (var social in SiteData.Socials)
+        {
+            <a href="@social.Url" target="_blank" rel="noopener noreferrer" aria-label="@social.Label">
+                <Icon Name="@social.Icon" Size="18" />
+                <span>@social.Handle</span>
+            </a>
+        }
+    </div>
+</div>
+
+@code {
+    private sealed record NavItem(string Index, string Label, string Id);
+
+    private static readonly NavItem[] Sections =
+    [
+        new("01", "Work", "work"),
+        new("02", "About", "about"),
+        new("03", "Stack", "stack"),
+        new("04", "Journey", "journey"),
+        new("05", "Services", "services"),
+        new("06", "Contact", "contact")
+    ];
+
+    [Parameter] public string? ActiveSection { get; set; }
+
+    private bool _menuOpen;
+
+    protected override void OnInitialized() => Theme.Changed += OnThemeChanged;
+
+    private void OnThemeChanged() => StateHasChanged();
+
+    private async Task ToggleTheme() => await Theme.ToggleAsync();
+
+    private async Task ToggleMenu()
+    {
+        _menuOpen = !_menuOpen;
+        await Interaction.LockScrollAsync(_menuOpen);
+    }
+
+    private async Task CloseMenu()
+    {
+        if (!_menuOpen) return;
+        _menuOpen = false;
+        await Interaction.LockScrollAsync(false);
+    }
+
+    private async Task GoHome()
+    {
+        await CloseMenu();
+        if (IsHome)
+        {
+            await Interaction.ScrollToTopAsync();
+        }
+        else
+        {
+            Nav.NavigateTo("/");
+        }
+    }
+
+    private async Task GoToSection(string id)
+    {
+        await CloseMenu();
+        if (IsHome)
+        {
+            await Interaction.ScrollToAsync(id);
+        }
+        else
+        {
+            Nav.NavigateTo($"/#{id}");
+        }
+    }
+
+    private bool IsHome =>
+        string.IsNullOrEmpty(Nav.ToBaseRelativePath(Nav.Uri).Split('#')[0].Split('?')[0]);
+
+    public void Dispose() => Theme.Changed -= OnThemeChanged;
+}

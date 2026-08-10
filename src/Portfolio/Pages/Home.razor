@@ -1,0 +1,29 @@
+﻿@page "/"
+@inject NavigationManager Nav
+@inject InteractionService Interaction
+
+<PageTitle>David Isea — Full-stack .NET developer</PageTitle>
+
+<HeroSection />
+<MarqueeStrip />
+<WorkSection />
+<AboutSection />
+<StackSection />
+<JourneySection />
+<ServicesSection />
+<ContactSection />
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        // Arriving from another page with /#section needs an explicit scroll.
+        var fragment = new Uri(Nav.Uri).Fragment.TrimStart('#');
+        if (!string.IsNullOrWhiteSpace(fragment))
+        {
+            await Task.Delay(120);
+            await Interaction.ScrollToAsync(fragment);
+        }
+    }
+}
