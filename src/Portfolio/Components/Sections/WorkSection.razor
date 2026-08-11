@@ -1,5 +1,3 @@
-@inject NavigationManager Nav
-
 <section class="section section--work" id="work">
     <div class="container">
         <SectionHeading Index="01"
@@ -14,64 +12,7 @@
             @foreach (var project in SiteData.Featured)
             {
                 position++;
-                <article class="work__item" data-reveal style="--accent:@project.Accent">
-                    <div class="work__visual" data-tilt>
-                        <a class="work__shot" href="@($"/work/{project.Slug}")" aria-label="@($"Open the {project.Name} case study")">
-                            @if (project.Shot is not null)
-                            {
-                                <img src="@project.Shot" alt="@($"Screenshot of {project.Name}")" loading="lazy" width="1200" height="750" />
-                            }
-                            <span class="work__glow" aria-hidden="true"></span>
-                        </a>
-                        <span class="work__number" aria-hidden="true">@position.ToString("00")</span>
-                    </div>
-
-                    <div class="work__body">
-                        <p class="work__meta">
-                            <span class="chip chip--accent">@project.KindLabel</span>
-                            <span>@project.Period</span>
-                            <span>·</span>
-                            <span>@project.Role</span>
-                        </p>
-
-                        <h3 class="work__title">
-                            <a href="@($"/work/{project.Slug}")">@project.Name</a>
-                        </h3>
-                        <p class="work__tagline">@project.Tagline</p>
-                        <p class="work__summary">@project.Summary</p>
-
-                        @if (project.Metrics.Count > 0)
-                        {
-                            <ul class="work__metrics">
-                                @foreach (var metric in project.Metrics)
-                                {
-                                    <li>@metric</li>
-                                }
-                            </ul>
-                        }
-
-                        <ul class="chips">
-                            @foreach (var tech in project.Stack)
-                            {
-                                <li class="chip">@tech</li>
-                            }
-                        </ul>
-
-                        <div class="work__links">
-                            <a class="button button--primary" href="@($"/work/{project.Slug}")">
-                                <span>Case study</span>
-                                <Icon Name="arrow-right" Size="16" />
-                            </a>
-                            @foreach (var link in project.Links)
-                            {
-                                <a class="button button--ghost" href="@link.Url" target="_blank" rel="noopener noreferrer">
-                                    <Icon Name="@link.Icon" Size="16" />
-                                    <span>@link.Label</span>
-                                </a>
-                            }
-                        </div>
-                    </div>
-                </article>
+                <FeaturedProject Project="project" Position="position" />
             }
         </div>
 
@@ -80,27 +21,7 @@
             <div class="more__grid">
                 @foreach (var project in SiteData.More)
                 {
-                    <article class="more__card" data-tilt style="--accent:@project.Accent">
-                        <header>
-                            <span class="more__kind">@project.KindLabel</span>
-                            <span class="more__year">@project.Period</span>
-                        </header>
-                        <h4>@project.Name</h4>
-                        <p>@project.Summary</p>
-                        <ul class="chips chips--tight">
-                            @foreach (var tech in project.Stack)
-                            {
-                                <li class="chip">@tech</li>
-                            }
-                        </ul>
-                        @foreach (var link in project.Links)
-                        {
-                            <a class="more__link" href="@link.Url" target="_blank" rel="noopener noreferrer">
-                                <Icon Name="@link.Icon" Size="15" />
-                                <span>@link.Label</span>
-                            </a>
-                        }
-                    </article>
+                    <ProjectCard Project="project" />
                 }
             </div>
         </div>

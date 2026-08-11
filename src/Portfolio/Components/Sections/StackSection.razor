@@ -8,18 +8,7 @@
         <div class="stack-grid">
             @foreach (var group in SiteData.Stack)
             {
-                <article class="stack-card" data-reveal data-tilt>
-                    <header class="stack-card__head">
-                        <h3>@group.Title</h3>
-                        <p>@group.Caption</p>
-                    </header>
-                    <ul class="chips">
-                        @foreach (var item in group.Items)
-                        {
-                            <li class="chip">@item</li>
-                        }
-                    </ul>
-                </article>
+                <StackCard Group="group" />
             }
         </div>
     </div>

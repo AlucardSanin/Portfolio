@@ -1,0 +1,9 @@
+<div class="service" data-reveal data-tilt>
+    <span class="service__icon"><Icon Name="@Service.Icon" Size="22" /></span>
+    <h3>@Service.Title</h3>
+    <p>@Service.Body</p>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Service Service { get; set; } = default!;
+}

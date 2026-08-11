@@ -1,0 +1,22 @@
+<div class="section section--narrow">
+    <div class="container empty-state">
+        @if (!string.IsNullOrWhiteSpace(Code))
+        {
+            <p class="empty-state__code">@Code</p>
+        }
+        <h1>@Title</h1>
+        <p>@Body</p>
+        <a class="button button--primary" href="@LinkUrl">
+            <span>@LinkLabel</span>
+            <Icon Name="arrow-right" Size="16" />
+        </a>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? Code { get; set; }
+    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Body { get; set; } = string.Empty;
+    [Parameter] public string LinkUrl { get; set; } = "/";
+    [Parameter] public string LinkLabel { get; set; } = "Back home";
+}

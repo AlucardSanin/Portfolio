@@ -45,17 +45,7 @@
             <div class="education__grid">
                 @foreach (var entry in SiteData.Education)
                 {
-                    <article class="education__card">
-                        <p class="education__period">@entry.Period</p>
-                        <h4>@entry.Title</h4>
-                        <p class="education__place">@entry.Place</p>
-                        <ul>
-                            @foreach (var note in entry.Notes)
-                            {
-                                <li>@note</li>
-                            }
-                        </ul>
-                    </article>
+                    <EducationCard Entry="entry" />
                 }
             </div>
         </div>

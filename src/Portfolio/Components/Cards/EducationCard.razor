@@ -1,0 +1,15 @@
+<div class="education__card">
+    <p class="education__period">@Entry.Period</p>
+    <h4>@Entry.Title</h4>
+    <p class="education__place">@Entry.Place</p>
+    <ul>
+        @foreach (var note in Entry.Notes)
+        {
+            <li>@note</li>
+        }
+    </ul>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public EducationEntry Entry { get; set; } = default!;
+}

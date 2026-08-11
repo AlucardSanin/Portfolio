@@ -1,0 +1,65 @@
+<div class="work__item" data-reveal style="--accent:@Project.Accent">
+    <div class="work__visual" data-tilt>
+        <a class="work__shot" href="@CaseUrl" aria-label="@($"Open the {Project.Name} case study")">
+            @if (Project.Shot is not null)
+            {
+                <img src="@Project.Shot" alt="@($"Screenshot of {Project.Name}")" loading="lazy" width="1200" height="750" />
+            }
+            <span class="work__glow" aria-hidden="true"></span>
+        </a>
+        <span class="work__number" aria-hidden="true">@Position.ToString("00")</span>
+    </div>
+
+    <div class="work__body">
+        <p class="work__meta">
+            <span class="chip chip--accent">@Project.KindLabel</span>
+            <span>@Project.Period</span>
+            <span>·</span>
+            <span>@Project.Role</span>
+        </p>
+
+        <h3 class="work__title">
+            <a href="@CaseUrl">@Project.Name</a>
+        </h3>
+        <p class="work__tagline">@Project.Tagline</p>
+        <p class="work__summary">@Project.Summary</p>
+
+        @if (Project.Metrics.Count > 0)
+        {
+            <ul class="work__metrics">
+                @foreach (var metric in Project.Metrics)
+                {
+                    <li>@metric</li>
+                }
+            </ul>
+        }
+
+        <ul class="chips">
+            @foreach (var tech in Project.Stack)
+            {
+                <li class="chip">@tech</li>
+            }
+        </ul>
+
+        <div class="work__links">
+            <a class="button button--primary" href="@CaseUrl">
+                <span>Case study</span>
+                <Icon Name="arrow-right" Size="16" />
+            </a>
+            @foreach (var link in Project.Links)
+            {
+                <a class="button button--ghost" href="@link.Url" target="_blank" rel="noopener noreferrer">
+                    <Icon Name="@link.Icon" Size="16" />
+                    <span>@link.Label</span>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Project Project { get; set; } = default!;
+    [Parameter] public int Position { get; set; }
+
+    private string CaseUrl => $"/work/{Project.Slug}";
+}

@@ -8,11 +8,7 @@
         <div class="services">
             @foreach (var service in SiteData.Services)
             {
-                <article class="service" data-reveal data-tilt>
-                    <span class="service__icon"><Icon Name="@service.Icon" Size="22" /></span>
-                    <h3>@service.Title</h3>
-                    <p>@service.Body</p>
-                </article>
+                <ServiceCard Service="service" />
             }
         </div>
     </div>
