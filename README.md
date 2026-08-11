@@ -147,6 +147,23 @@ new()
 }
 ```
 
+## One Razor gotcha worth knowing
+
+On .NET SDK 10.0.302 the Razor compiler mis-parses two things when they sit **directly inside a
+code block** (`@if`, `@foreach`, …):
+
+- `<PageTitle>` — keep it outside the branches and bind a field instead.
+- a component whose own root element is `<article>`, `<section>`, `<header>`, `<footer>` or
+  `<figure>` — give the component a `<div>` root, or wrap the tag in a plain element.
+
+Both patterns survive incremental builds and only fail on a clean one, so **always test with a
+fresh `obj/`** before trusting a green build:
+
+```bash
+rm -rf src/Portfolio/obj src/Portfolio/bin
+dotnet build DavidIseaPortfolio.slnx -c Release /warnaserror
+```
+
 ## Legacy site
 
 The original 2022 HTML/CSS/JS portfolio is preserved under [`legacy/`](./legacy) for reference.
