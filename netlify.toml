@@ -1,0 +1,40 @@
+[build]
+  command = "./build.sh"
+  publish = "publish/wwwroot"
+
+[build.environment]
+  # Deliberately not DOTNET_VERSION: that name drives Netlify's own .NET
+  # provisioning, which does not know about 10.0. build.sh reads this instead.
+  DOTNET_CHANNEL = "10.0"
+  DOTNET_NOLOGO = "1"
+  DOTNET_CLI_TELEMETRY_OPTOUT = "1"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE = "1"
+
+# Blazor WebAssembly is a single-page app: every route serves index.html.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/_framework/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"

@@ -1,0 +1,116 @@
+@page "/resume"
+@inject IJSRuntime Js
+
+<PageTitle>Résumé — David Isea, .NET Full Stack Developer</PageTitle>
+
+<section class="section resume-page">
+    <div class="container">
+        <div class="resume-actions no-print">
+            <a class="case__back" href="/">
+                <Icon Name="arrow-right" Size="16" Class="case__back-icon" />
+                <span>Back to the portfolio</span>
+            </a>
+            <button type="button" class="button button--primary" @onclick="Print">
+                <span>Print / Save as PDF</span>
+                <Icon Name="arrow-down" Size="16" />
+            </button>
+        </div>
+
+        <article class="resume">
+            <header class="resume__head">
+                <h1>@SiteData.Name</h1>
+                <p class="resume__role">@SiteData.RoleLong</p>
+                <p class="resume__contact">
+                    <a href="@($"mailto:{SiteData.Email}")">@SiteData.Email</a>
+                    <span>·</span>
+                    <span>@SiteData.Phone</span>
+                    <span>·</span>
+                    <span>@SiteData.Location</span>
+                </p>
+                <p class="resume__contact">
+                    @foreach (var social in SiteData.Socials.Where(s => s.Icon != "mail"))
+                    {
+                        <a href="@social.Url" target="_blank" rel="noopener noreferrer">@social.Label</a>
+                        <span>·</span>
+                    }
+                    <a href="/">Portfolio</a>
+                </p>
+            </header>
+
+            <section class="resume__block">
+                <h2>Professional summary</h2>
+                <p>@SiteData.Summary</p>
+                <p>@SiteData.AboutBody</p>
+            </section>
+
+            <section class="resume__block">
+                <h2>Technical skills</h2>
+                <dl class="resume__skills">
+                    @foreach (var group in SiteData.Stack)
+                    {
+                        <div>
+                            <dt>@group.Title</dt>
+                            <dd>@string.Join(", ", group.Items)</dd>
+                        </div>
+                    }
+                    <div>
+                        <dt>Languages</dt>
+                        <dd>@string.Join(", ", SiteData.Languages.Select(l => $"{l.Name} ({l.Level})"))</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="resume__block">
+                <h2>Professional experience</h2>
+                @foreach (var entry in SiteData.Timeline)
+                {
+                    <div class="resume__entry">
+                        <h3>@entry.Title</h3>
+                        <p class="resume__entry-meta">@entry.Place<span>·</span>@entry.Period</p>
+                        <p class="resume__entry-body">@entry.Body</p>
+                        <ul>
+                            @foreach (var achievement in entry.Achievements)
+                            {
+                                <li>@achievement</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </section>
+
+            <section class="resume__block">
+                <h2>Selected projects</h2>
+                @foreach (var project in SiteData.Featured)
+                {
+                    <div class="resume__entry">
+                        <h3>@project.Name — @project.Tagline</h3>
+                        <p class="resume__entry-meta">@project.Role<span>·</span>@project.Period</p>
+                        <p class="resume__entry-body">@project.Summary</p>
+                        <p class="resume__entry-stack">@string.Join(" · ", project.Stack)</p>
+                    </div>
+                }
+            </section>
+
+            <section class="resume__block">
+                <h2>Education</h2>
+                @foreach (var entry in SiteData.Education)
+                {
+                    <div class="resume__entry">
+                        <h3>@entry.Title</h3>
+                        <p class="resume__entry-meta">@entry.Place<span>·</span>@entry.Period</p>
+                        <ul>
+                            @foreach (var note in entry.Notes)
+                            {
+                                <li>@note</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </section>
+        </article>
+    </div>
+</section>
+
+@code {
+    private async Task Print() => await Js.InvokeVoidAsync("portfolio.print");
+}

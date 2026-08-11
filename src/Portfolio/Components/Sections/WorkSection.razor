@@ -1,0 +1,29 @@
+<section class="section section--work" id="work">
+    <div class="container">
+        <SectionHeading Index="01"
+                        Kicker="Selected work"
+                        Title="Products people actually use"
+                        Lead="Three live products, three very different problems. Same person from the data model to the deploy." />
+
+        <div class="work">
+            @{
+                var position = 0;
+            }
+            @foreach (var project in SiteData.Featured)
+            {
+                position++;
+                <FeaturedProject Project="project" Position="position" />
+            }
+        </div>
+
+        <div class="more" data-reveal>
+            <h3 class="more__title">Also built along the way</h3>
+            <div class="more__grid">
+                @foreach (var project in SiteData.More)
+                {
+                    <ProjectCard Project="project" />
+                }
+            </div>
+        </div>
+    </div>
+</section>

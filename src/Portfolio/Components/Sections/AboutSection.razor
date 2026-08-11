@@ -1,0 +1,37 @@
+<section class="section section--about" id="about">
+    <div class="container">
+        <SectionHeading Index="02"
+                        Kicker="About"
+                        Title="Sole developer on a platform restaurants run their night on" />
+
+        <div class="about">
+            <div class="about__text" data-reveal>
+                <p class="about__lead">@SiteData.AboutLead</p>
+                <p>@SiteData.Summary</p>
+                <p>@SiteData.AboutBody</p>
+
+                <ul class="about__facts">
+                    <li><Icon Name="code" Size="18" /><span>C# and Blazor daily; React and JavaScript when they earn their place</span></li>
+                    <li><Icon Name="map-pin" Size="18" /><span>@SiteData.LocationDetail</span></li>
+                    <li><Icon Name="bolt" Size="18" /><span>Owns a feature end to end: schema, services, UI, deploy, support</span></li>
+                    <li>
+                        <Icon Name="mail" Size="18" />
+                        <span>
+                            @string.Join(" · ", SiteData.Languages.Select(l => $"{l.Name} ({l.Level})"))
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="about__stats" data-reveal>
+                @foreach (var stat in SiteData.Stats)
+                {
+                    <div class="stat">
+                        <span class="stat__value" data-count="@stat.Value">0</span>
+                        <span class="stat__label">@stat.Label</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

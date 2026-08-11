@@ -1,0 +1,20 @@
+# .NET build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+publish/
+*.user
+*.suo
+*.userprefs
+
+# Tooling
+.vs/
+.idea/
+.dotnet/
+.netlify/
+
+# OS noise
+.DS_Store
+Thumbs.db

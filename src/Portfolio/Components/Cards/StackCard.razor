@@ -1,0 +1,20 @@
+@* Repeated cards live in their own components. Their root is a <div>: this Razor
+   version mis-parses a component whose root is <article>/<section> when the
+   component is used inside a code block such as @foreach. *@
+
+<div class="stack-card" data-reveal data-tilt>
+    <header class="stack-card__head">
+        <h3>@Group.Title</h3>
+        <p>@Group.Caption</p>
+    </header>
+    <ul class="chips">
+        @foreach (var item in Group.Items)
+        {
+            <li class="chip">@item</li>
+        }
+    </ul>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public TechGroup Group { get; set; } = default!;
+}

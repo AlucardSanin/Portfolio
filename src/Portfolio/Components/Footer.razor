@@ -1,0 +1,46 @@
+@inject InteractionService Interaction
+
+<footer class="footer">
+    <div class="footer__marquee" aria-hidden="true">
+        <div class="footer__marquee-track">
+            @for (var pass = 0; pass < 3; pass++)
+            {
+                <span>Let's build something<i>✦</i></span>
+            }
+        </div>
+    </div>
+
+    <div class="container footer__inner">
+        <div class="footer__brand">
+            <span class="brand__mark" aria-hidden="true">DI</span>
+            <div>
+                <strong>@SiteData.Name</strong>
+                <p>@SiteData.Role · @SiteData.Handle</p>
+            </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+            <a href="@($"mailto:{SiteData.Email}")">@SiteData.Email</a>
+            <a href="/resume">
+                <Icon Name="code" Size="16" />
+                <span>Résumé</span>
+            </a>
+            @foreach (var social in SiteData.Socials.Where(s => s.Icon != "mail"))
+            {
+                <a href="@social.Url" target="_blank" rel="noopener noreferrer">
+                    <Icon Name="@social.Icon" Size="16" />
+                    <span>@social.Label</span>
+                </a>
+            }
+        </nav>
+
+        <div class="footer__meta">
+            <p>Built with Blazor WebAssembly on .NET 10. No JavaScript framework was harmed.</p>
+            <p>© @DateTime.Now.Year @SiteData.Name — made in Venezuela, deployed everywhere.</p>
+        </div>
+
+        <button type="button" class="footer__top" @onclick="@(() => Interaction.ScrollToTopAsync())" aria-label="Back to top">
+            <Icon Name="arrow-up" Size="18" />
+        </button>
+    </div>
+</footer>

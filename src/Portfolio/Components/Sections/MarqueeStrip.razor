@@ -1,0 +1,40 @@
+@* Two infinite strips running in opposite directions. *@
+
+<div class="marquee" aria-hidden="true">
+    <div class="marquee__row">
+        <div class="marquee__track">
+            @for (var pass = 0; pass < 2; pass++)
+            {
+                @foreach (var item in TopRow)
+                {
+                    <span class="marquee__item">@item<i>◆</i></span>
+                }
+            }
+        </div>
+    </div>
+    <div class="marquee__row marquee__row--reverse">
+        <div class="marquee__track">
+            @for (var pass = 0; pass < 2; pass++)
+            {
+                @foreach (var item in BottomRow)
+                {
+                    <span class="marquee__item marquee__item--outline">@item<i>◆</i></span>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private static readonly string[] TopRow =
+    [
+        "C#", ".NET 10", "Blazor", "ASP.NET Core", "Entity Framework Core", "SQL Server",
+        "SignalR", ".NET MAUI", "Razor Components"
+    ];
+
+    private static readonly string[] BottomRow =
+    [
+        "JavaScript", "React", "Redux", "Tailwind CSS", "PostgreSQL", "Stripe",
+        "QuestPDF", "nginx", "GitHub Actions", "Ruby on Rails"
+    ];
+}

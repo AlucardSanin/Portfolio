@@ -1,0 +1,25 @@
+<div class="more__card" data-tilt style="--accent:@Project.Accent">
+    <header>
+        <span class="more__kind">@Project.KindLabel</span>
+        <span class="more__year">@Project.Period</span>
+    </header>
+    <h4>@Project.Name</h4>
+    <p>@Project.Summary</p>
+    <ul class="chips chips--tight">
+        @foreach (var tech in Project.Stack)
+        {
+            <li class="chip">@tech</li>
+        }
+    </ul>
+    @foreach (var link in Project.Links)
+    {
+        <a class="more__link" href="@link.Url" target="_blank" rel="noopener noreferrer">
+            <Icon Name="@link.Icon" Size="15" />
+            <span>@link.Label</span>
+        </a>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Project Project { get; set; } = default!;
+}

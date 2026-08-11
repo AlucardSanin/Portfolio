@@ -1,0 +1,150 @@
+@implements IDisposable
+@inject InteractionService Interaction
+
+<section class="hero" id="hero">
+    <div class="hero__aurora" aria-hidden="true">
+        <span class="hero__blob hero__blob--1"></span>
+        <span class="hero__blob hero__blob--2"></span>
+        <span class="hero__blob hero__blob--3"></span>
+    </div>
+    <div class="hero__grid-lines" aria-hidden="true"></div>
+    <FloatingPhrases Count="16" Seed="42" />
+
+    <div class="container hero__inner">
+        <div class="hero__content">
+            <p class="hero__eyebrow" data-reveal>
+                <span class="pulse" aria-hidden="true"></span>
+                Available for freelance &amp; full-time · Remote worldwide
+            </p>
+
+            <h1 class="hero__title" data-reveal>
+                <span class="hero__hi">Hi, I'm</span>
+                <span class="hero__name">David Isea</span>
+            </h1>
+
+            <p class="hero__role" data-reveal>
+                <span class="hero__role-static">I'm a</span>
+                <span class="hero__role-typed">@_typed<span class="caret" aria-hidden="true"></span></span>
+            </p>
+
+            <p class="hero__pitch" data-reveal>@SiteData.HeroPitch</p>
+
+            <div class="hero__actions" data-reveal>
+                <button type="button" class="button button--primary" @onclick="@(() => Interaction.ScrollToAsync("work"))">
+                    <span>See the work</span>
+                    <Icon Name="arrow-right" Size="16" />
+                </button>
+                <button type="button" class="button button--ghost" @onclick="@(() => Interaction.ScrollToAsync("contact"))">
+                    <span>Start a project</span>
+                    <Icon Name="sparkle" Size="16" />
+                </button>
+                <a class="button button--ghost" href="/resume">
+                    <span>Résumé</span>
+                    <Icon Name="arrow-right" Size="16" />
+                </a>
+            </div>
+
+            <div class="hero__socials" data-reveal>
+                @foreach (var social in SiteData.Socials)
+                {
+                    <a href="@social.Url"
+                       target="@(social.Icon == "mail" ? null : "_blank")"
+                       rel="noopener noreferrer"
+                       class="hero__social"
+                       aria-label="@social.Label">
+                        <Icon Name="@social.Icon" Size="18" />
+                    </a>
+                }
+                <span class="hero__location">
+                    <Icon Name="map-pin" Size="16" />
+                    Venezuela — shipping for Swiss hospitality, remotely, since 2022
+                </span>
+            </div>
+        </div>
+
+        <aside class="hero__card" data-reveal data-tilt>
+            <div class="codecard">
+                <div class="codecard__bar">
+                    <span class="codecard__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span class="codecard__tab is-active">David.cs</span>
+                    <span class="codecard__tab">Portfolio.razor</span>
+                </div>
+                <pre class="codecard__body"><code><span class="c-key">public sealed record</span> <span class="c-type">Developer</span>
+{
+    <span class="c-key">public string</span> Name => <span class="c-str">"David Isea"</span>;
+    <span class="c-key">public string</span> Stack => <span class="c-str">".NET · Blazor · SQL"</span>;
+    <span class="c-key">public string[]</span> Shipping =>
+    [
+        <span class="c-str">"mydinner.ch"</span>,
+        <span class="c-str">"inventory-rsy.online"</span>,
+        <span class="c-str">"arrietagency.com"</span>
+    ];
+
+    <span class="c-key">public bool</span> OpenToWork => <span class="c-key">true</span>;
+    <span class="c-cmt">// yes, this page is Blazor too</span>
+}</code></pre>
+            </div>
+        </aside>
+    </div>
+
+    <button type="button" class="hero__scroll" @onclick="@(() => Interaction.ScrollToAsync("work"))" aria-label="Scroll to work">
+        <span>scroll</span>
+        <Icon Name="arrow-down" Size="16" />
+    </button>
+</section>
+
+@code {
+    private readonly System.Timers.Timer _timer = new(90);
+    private int _roleIndex;
+    private int _charIndex;
+    private bool _deleting;
+    private string _typed = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        _timer.Elapsed += async (_, _) => await InvokeAsync(Tick);
+        _timer.AutoReset = true;
+        _timer.Start();
+    }
+
+    private void Tick()
+    {
+        var word = SiteData.RotatingRoles[_roleIndex];
+
+        if (!_deleting)
+        {
+            _charIndex++;
+            if (_charIndex >= word.Length)
+            {
+                _charIndex = word.Length;
+                _deleting = true;
+                _timer.Interval = 1900;
+            }
+            else
+            {
+                _timer.Interval = 55;
+            }
+        }
+        else
+        {
+            _charIndex--;
+            _timer.Interval = 28;
+            if (_charIndex <= 0)
+            {
+                _charIndex = 0;
+                _deleting = false;
+                _roleIndex = (_roleIndex + 1) % SiteData.RotatingRoles.Length;
+                _timer.Interval = 320;
+            }
+        }
+
+        _typed = word[.._charIndex];
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        _timer.Stop();
+        _timer.Dispose();
+    }
+}

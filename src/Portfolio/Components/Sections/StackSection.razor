@@ -1,0 +1,15 @@
+<section class="section section--stack" id="stack">
+    <div class="container">
+        <SectionHeading Index="03"
+                        Kicker="Stack"
+                        Title="The tools, and what I actually do with them"
+                        Lead="Not a logo wall. This is the set I reach for, grouped by the job it does." />
+
+        <div class="stack-grid">
+            @foreach (var group in SiteData.Stack)
+            {
+                <StackCard Group="group" />
+            }
+        </div>
+    </div>
+</section>

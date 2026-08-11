@@ -1,0 +1,121 @@
+<div class="case" style="--accent:@Project.Accent">
+    <header class="case__hero">
+        <div class="case__hero-glow" aria-hidden="true"></div>
+        <div class="container">
+            <a class="case__back" href="/#work">
+                <Icon Name="arrow-right" Size="16" Class="case__back-icon" />
+                <span>All work</span>
+            </a>
+
+            <p class="case__meta">
+                <span class="chip chip--accent">@Project.KindLabel</span>
+                <span>@Project.Period</span>
+                <span>·</span>
+                <span>@Project.Role</span>
+            </p>
+
+            <h1 class="case__title">@Project.Name</h1>
+            <p class="case__tagline">@Project.Tagline</p>
+
+            <div class="case__links">
+                @foreach (var link in Project.Links)
+                {
+                    <a class="@ButtonClass(link)" href="@link.Url" target="_blank" rel="noopener noreferrer">
+                        <Icon Name="@link.Icon" Size="16" />
+                        <span>@link.Label</span>
+                    </a>
+                }
+            </div>
+        </div>
+    </header>
+
+    @if (Project.Shot is not null)
+    {
+        <div class="container">
+            <figure class="case__shot" data-reveal>
+                <img src="@Project.Shot" alt="@($"Screenshot of {Project.Name}")" width="1200" height="750" />
+                <figcaption>@Project.Name, live in production</figcaption>
+            </figure>
+        </div>
+    }
+
+    <div class="container case__grid">
+        <div class="case__main">
+            <p class="case__summary" data-reveal>@Project.Summary</p>
+
+            @foreach (var block in Project.CaseStudy)
+            {
+                <CaseBlock Title="@block.Title" Detail="@block.Detail" />
+            }
+
+            @if (Project.Highlights.Count > 0)
+            {
+                <CaseBlock Title="What is inside">
+                    <ul class="case__list">
+                        @foreach (var highlight in Project.Highlights)
+                        {
+                            <li>
+                                <Icon Name="check" Size="16" />
+                                <span>@highlight</span>
+                            </li>
+                        }
+                    </ul>
+                </CaseBlock>
+            }
+        </div>
+
+        <aside class="case__aside">
+            <div class="case__panel" data-reveal>
+                <h3>Stack</h3>
+                <ul class="chips">
+                    @foreach (var tech in Project.Stack)
+                    {
+                        <li class="chip">@tech</li>
+                    }
+                </ul>
+            </div>
+
+            @if (Project.Metrics.Count > 0)
+            {
+                <div class="case__panel" data-reveal>
+                    <h3>At a glance</h3>
+                    <ul class="case__metrics">
+                        @foreach (var metric in Project.Metrics)
+                        {
+                            <li>@metric</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <div class="case__panel case__panel--cta" data-reveal>
+                <h3>Need something like this?</h3>
+                <p>I can take a product from an empty repository to a signed invoice in production.</p>
+                <a class="button button--primary button--block" href="/#contact">
+                    <span>Start a project</span>
+                    <Icon Name="arrow-right" Size="16" />
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    @if (Next is not null)
+    {
+        <div class="container">
+            <a class="case__next" href="@($"/work/{Next.Slug}")" style="--accent:@Next.Accent">
+                <span class="case__next-label">Next project</span>
+                <span class="case__next-name">@Next.Name</span>
+                <span class="case__next-tagline">@Next.Tagline</span>
+                <Icon Name="arrow-right" Size="22" Class="case__next-arrow" />
+            </a>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Project Project { get; set; } = default!;
+    [Parameter] public Project? Next { get; set; }
+
+    private static string ButtonClass(ProjectLink link) =>
+        link.Icon == "external" ? "button button--primary" : "button button--ghost";
+}

@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: Blazor WebAssembly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore DavidIseaPortfolio.slnx
+
+      - name: Build
+        run: dotnet build DavidIseaPortfolio.slnx -c Release --no-restore /warnaserror
+
+      - name: Publish
+        run: dotnet publish src/Portfolio/Portfolio.csproj -c Release -o publish
+
+      - name: Upload static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-wwwroot
+          path: publish/wwwroot
+          retention-days: 7

@@ -1,0 +1,175 @@
+@using System.ComponentModel.DataAnnotations
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject InteractionService Interaction
+
+<section class="section section--contact" id="contact">
+    <div class="container">
+        <SectionHeading Index="06"
+                        Kicker="Contact"
+                        Title="Got something that needs building?"
+                        Lead="Tell me what the software has to do and who has to use it. I answer every message." />
+
+        <div class="contact">
+            <div class="contact__aside" data-reveal>
+                <p class="contact__available">
+                    <span class="pulse" aria-hidden="true"></span>
+                    Open to freelance projects and full-time roles
+                </p>
+
+                <button type="button" class="contact__email" @onclick="CopyEmail">
+                    <span class="contact__email-label">Email</span>
+                    <span class="contact__email-value">@SiteData.Email</span>
+                    <span class="contact__email-action">
+                        <Icon Name="@(_copied ? "check" : "copy")" Size="16" />
+                        @(_copied ? "Copied" : "Copy")
+                    </span>
+                </button>
+
+                <ul class="contact__details">
+                    <li>
+                        <Icon Name="phone" Size="16" />
+                        <span>@SiteData.Phone</span>
+                    </li>
+                    <li>
+                        <Icon Name="map-pin" Size="16" />
+                        <span>@SiteData.Location</span>
+                    </li>
+                </ul>
+
+                <ul class="contact__socials">
+                    @foreach (var social in SiteData.Socials)
+                    {
+                        <li>
+                            <a href="@social.Url"
+                               target="@(social.Icon == "mail" ? null : "_blank")"
+                               rel="noopener noreferrer">
+                                <Icon Name="@social.Icon" Size="18" />
+                                <span class="contact__social-label">@social.Label</span>
+                                <span class="contact__social-handle">@social.Handle</span>
+                                <Icon Name="arrow-right" Size="16" Class="contact__social-arrow" />
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="contact__form-wrap" data-reveal>
+                @if (_state == FormState.Sent)
+                {
+                    <div class="contact__done">
+                        <span class="contact__done-icon"><Icon Name="check" Size="26" /></span>
+                        <h3>Message sent</h3>
+                        <p>Thanks for reaching out — I'll get back to you at the address you left.</p>
+                        <button type="button" class="button button--ghost" @onclick="Reset">
+                            <span>Send another</span>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <EditForm Model="_model" OnValidSubmit="Submit" class="contact__form" FormName="contact">
+                        <DataAnnotationsValidator />
+
+                        <label class="field">
+                            <span class="field__label">Your name</span>
+                            <InputText @bind-Value="_model.Name" class="field__input" placeholder="Ada Lovelace" autocomplete="name" />
+                            <ValidationMessage For="() => _model.Name" />
+                        </label>
+
+                        <label class="field">
+                            <span class="field__label">Email</span>
+                            <InputText @bind-Value="_model.Email" class="field__input" placeholder="you@company.com" autocomplete="email" />
+                            <ValidationMessage For="() => _model.Email" />
+                        </label>
+
+                        <label class="field">
+                            <span class="field__label">What are we building?</span>
+                            <InputTextArea @bind-Value="_model.Message" class="field__input field__input--area" rows="5"
+                                           placeholder="A short description of the product, the users and the timeline." />
+                            <ValidationMessage For="() => _model.Message" />
+                        </label>
+
+                        @if (_state == FormState.Failed)
+                        {
+                            <p class="contact__error">
+                                Something went wrong sending the form. Write me directly at
+                                <a href="@($"mailto:{SiteData.Email}")">@SiteData.Email</a>.
+                            </p>
+                        }
+
+                        <button type="submit" class="button button--primary button--block" disabled="@(_state == FormState.Sending)">
+                            <span>@(_state == FormState.Sending ? "Sending…" : "Send message")</span>
+                            <Icon Name="arrow-right" Size="16" />
+                        </button>
+                    </EditForm>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private enum FormState { Idle, Sending, Sent, Failed }
+
+    private sealed class ContactModel
+    {
+        [Required(ErrorMessage = "Tell me who you are.")]
+        [StringLength(60, ErrorMessage = "That name is a bit long.")]
+        public string Name { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "I need an address to reply to.")]
+        [EmailAddress(ErrorMessage = "That email does not look right.")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "A couple of lines is enough.")]
+        [StringLength(1200, MinimumLength = 10, ErrorMessage = "Give me at least a sentence.")]
+        public string Message { get; set; } = string.Empty;
+    }
+
+    private ContactModel _model = new();
+    private FormState _state = FormState.Idle;
+    private bool _copied;
+
+    private async Task Submit()
+    {
+        _state = FormState.Sending;
+
+        try
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Post, SiteData.FormEndpoint)
+            {
+                Content = JsonContent.Create(new
+                {
+                    name = _model.Name,
+                    email = _model.Email,
+                    message = _model.Message,
+                    _subject = $"Portfolio — new message from {_model.Name}"
+                })
+            };
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await Http.SendAsync(request);
+            _state = response.IsSuccessStatusCode ? FormState.Sent : FormState.Failed;
+        }
+        catch (HttpRequestException)
+        {
+            _state = FormState.Failed;
+        }
+    }
+
+    private void Reset()
+    {
+        _model = new ContactModel();
+        _state = FormState.Idle;
+    }
+
+    private async Task CopyEmail()
+    {
+        _copied = await Interaction.CopyAsync(SiteData.Email);
+        StateHasChanged();
+        await Task.Delay(2000);
+        _copied = false;
+        StateHasChanged();
+    }
+}

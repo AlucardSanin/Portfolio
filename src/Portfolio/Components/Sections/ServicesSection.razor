@@ -1,0 +1,15 @@
+<section class="section section--services" id="services">
+    <div class="container">
+        <SectionHeading Index="05"
+                        Kicker="Services"
+                        Title="What you get when you hire me"
+                        Lead="Pick the one that sounds like your problem. Usually it is two of them at once." />
+
+        <div class="services">
+            @foreach (var service in SiteData.Services)
+            {
+                <ServiceCard Service="service" />
+            }
+        </div>
+    </div>
+</section>

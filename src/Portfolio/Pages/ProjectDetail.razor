@@ -1,0 +1,52 @@
+@page "/work/{slug}"
+
+@* Razor 10.0.302 mis-parses <PageTitle> and some component tags placed directly
+   inside a code block, so the title stays outside the branches and each branch
+   wraps its component in a plain element. *@
+<PageTitle>@_title</PageTitle>
+
+@if (_project is null)
+{
+    <div class="case-page">
+        <EmptyState Title="@NotFoundTitle" Body="@NotFoundBody" LinkUrl="/#work" LinkLabel="Back to the work" />
+    </div>
+}
+else
+{
+    <div class="case-page">
+        <CaseStudy Project="_project" Next="_next" />
+    </div>
+}
+
+@code {
+    private const string NotFoundTitle = "That project moved";
+
+    private const string NotFoundBody =
+        "The case study you are looking for is not here. Everything I have shipped is on the home page.";
+
+    [Parameter] public string Slug { get; set; } = string.Empty;
+
+    private Project? _project;
+    private Project? _next;
+    private string _title = $"Project not found — {SiteData.Name}";
+
+    protected override void OnParametersSet()
+    {
+        _project = SiteData.FindProject(Slug);
+
+        if (_project is null)
+        {
+            _next = null;
+            _title = $"Project not found — {SiteData.Name}";
+            return;
+        }
+
+        _title = $"{_project.Name} — case study by {SiteData.Name}";
+
+        var featured = SiteData.Featured.ToArray();
+        var index = Array.FindIndex(featured, p => p.Slug == _project.Slug);
+        _next = index >= 0 && featured.Length > 1
+            ? featured[(index + 1) % featured.Length]
+            : null;
+    }
+}
