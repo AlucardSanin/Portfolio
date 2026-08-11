@@ -42,31 +42,31 @@ public static class SiteData
         ".NET full stack developer",
         "Blazor & C# specialist",
         "core platform engineer",
-        "sole Blazor developer",
+        "remote product engineer",
         "developer who actually ships"
     ];
 
     public const string HeroPitch =
-        "I ship production SaaS for the Swiss hospitality industry with a product team — backend, " +
-        "database, mobile and payments included. On Blazor I am the sole developer: the interactive UI, " +
-        "the real-time surfaces and the screens restaurants run every night.";
+        "I help ship production SaaS with a product team — backend, database, mobile and payments included. " +
+        "On Blazor I take the lead: the interactive UI, the real-time surfaces and the screens restaurants " +
+        "run every night. I work remotely from Venezuela for Otamot / MyDinner.ch.";
 
     public const string Summary =
         "Passionate full stack .NET developer with hands-on experience building production-grade enterprise " +
-        "web and mobile applications for the Swiss hospitality industry. On MyDinner.ch I contribute across " +
-        "the stack — backend services, SQL Server, .NET MAUI mobile and Stripe payments — and I am the sole " +
-        "developer of the Blazor Server web application that restaurants and staff use every night.";
+        "web and mobile applications. Remotely, I work on MyDinner.ch for a Swiss company: I contribute across " +
+        "the stack — backend services, SQL Server, .NET MAUI mobile and Stripe payments — and I lead the " +
+        "Blazor Server web application that restaurants and staff use every night.";
 
     public const string AboutLead =
-        "Sole Blazor developer on a team-built SaaS that real restaurants depend on every night.";
+        "Full stack engineer on a restaurant SaaS — team contributor across the stack, Blazor lead on the web app.";
 
     public const string AboutBody =
         "I work inside a product team and take part in the same processes as everyone else: backend, " +
-        "database design, mobile and payments. Blazor is where I am alone — the interactive UI, the " +
+        "database design, mobile and payments. Blazor is my main focus — the interactive UI, the " +
         "server-side state, the SignalR surfaces and the screens the waiter presses. I studied software " +
         "engineering at URBE, sharpened the fundamentals through 1,300+ hours at Microverse, and have been " +
         "shipping .NET in production since November 2022. I communicate clearly across distributed teams " +
-        "and I am comfortable owning a complex web surface while still shipping with others.";
+        "and I am comfortable leading a complex web surface while still shipping with others.";
 
     public static readonly SocialLink[] Socials =
     [
@@ -142,9 +142,9 @@ public static class SiteData
         new("Nov 2022 – Present",
             ".NET Full Stack Developer — Core Platform Engineer",
             "Otamot GmbH / MyDinner.ch · Technolog Schweiz — Switzerland (Remote)",
-            "Full stack engineer on MyDinner.ch, a SaaS product for Swiss restaurant management built by a " +
-            "product team. I contribute across backend, database, mobile and payments, and I am the sole " +
-            "developer of the Blazor Server web application. The platform serves real restaurants in production " +
+            "Full stack engineer on MyDinner.ch, a restaurant management SaaS built by a product team. " +
+            "I contribute across backend, database, mobile and payments, and I lead the Blazor Server web " +
+            "application. Remote role for a Swiss company; the platform serves restaurants in production " +
             "with thousands of orders processed.",
             ["Blazor Server", "SignalR", "EF Core", "SQL Server", ".NET MAUI", "Stripe"],
             [
@@ -226,8 +226,8 @@ public static class SiteData
         {
             Slug = "mydinner",
             Name = "MyDinner.ch",
-            Tagline = "Restaurant management SaaS for Switzerland",
-            Role = "Core Platform Engineer · sole Blazor developer",
+            Tagline = "Restaurant management SaaS",
+            Role = "Core Platform Engineer · Blazor lead",
             Period = "Nov 2022 – Present",
             Kind = ProjectKind.Platform,
             Accent = "#ff7a45",
@@ -259,9 +259,9 @@ public static class SiteData
                     "next to the point-of-sale — or completely without it."),
                 new("My role",
                     "I contribute across the product — backend services, SQL Server, .NET MAUI mobile and " +
-                    "Stripe payments — alongside the team. On Blazor I am alone: the interactive UI, the " +
+                    "Stripe payments — alongside the team. On Blazor I take the lead: the interactive UI, the " +
                     "server-side state, the SignalR real-time surfaces and the screens restaurants actually " +
-                    "run. The product is a team effort; the Blazor web app is mine."),
+                    "run. The product is a team effort; the web app is where I focus most."),
                 new("Why Blazor Server",
                     "An order is a live conversation between guest, waiter, kitchen and till. Blazor Server over " +
                     "SignalR keeps one source of truth on the server and pushes it to every connected screen, " +
