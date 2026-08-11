@@ -4,6 +4,7 @@ obj/
 [Dd]ebug/
 [Rr]elease/
 artifacts/
+publish/
 *.user
 *.suo
 *.userprefs

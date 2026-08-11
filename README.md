@@ -113,8 +113,11 @@ server {
 ### Netlify
 
 `netlify.toml` is already configured (`./build.sh`, publish `publish/wwwroot`, SPA fallback and
-long-lived caching for `_framework`). Netlify images have no .NET SDK, so `build.sh` installs it
-on demand. Delete the file if you host elsewhere.
+long-lived caching for `_framework`). Netlify's build image ships an older .NET SDK, so `build.sh`
+checks the major version rather than the mere presence of `dotnet` and installs .NET 10 side by
+side when needed. The channel comes from `DOTNET_CHANNEL`, not `DOTNET_VERSION` — the latter drives
+Netlify's own .NET provisioning, which does not know about 10.0. Delete the file if you host
+elsewhere.
 
 ### A note on size
 
