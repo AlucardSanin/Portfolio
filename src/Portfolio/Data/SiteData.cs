@@ -42,30 +42,31 @@ public static class SiteData
         ".NET full stack developer",
         "Blazor & C# specialist",
         "core platform engineer",
-        "one-person product team",
+        "remote product engineer",
         "developer who actually ships"
     ];
 
     public const string HeroPitch =
-        "I design, build and maintain production SaaS for the Swiss hospitality industry. Real-time order " +
-        "management, Stripe payments, multi-tenant SQL Server and a mobile app — all of it end to end, " +
-        "all of it live.";
+        "I help ship production SaaS with a product team — backend, database, mobile and payments included. " +
+        "On Blazor I take the lead: the interactive UI, the real-time surfaces and the screens restaurants " +
+        "run every night. I work remotely from Venezuela for Otamot / MyDinner.ch.";
 
     public const string Summary =
         "Passionate full stack .NET developer with hands-on experience building production-grade enterprise " +
-        "web and mobile applications for the Swiss hospitality industry. I currently architect and develop " +
-        "MyDinner.ch — a complete restaurant management SaaS platform — including real-time order management, " +
-        "Stripe payment integration, multi-language support and a complex Blazor Server front-end.";
+        "web and mobile applications. Remotely, I work on MyDinner.ch for a Swiss company: I contribute across " +
+        "the stack — backend services, SQL Server, .NET MAUI mobile and Stripe payments — and I lead the " +
+        "Blazor Server web application that restaurants and staff use every night.";
 
     public const string AboutLead =
-        "I am the sole developer behind a SaaS platform that real restaurants depend on every night.";
+        "Full stack engineer on a restaurant SaaS — team contributor across the stack, Blazor lead on the web app.";
 
     public const string AboutBody =
-        "Proven ability to independently design scalable systems, optimise database performance and deliver " +
-        "features end to end — from the SQL schema to the button the waiter presses. I studied software " +
+        "I work inside a product team and take part in the same processes as everyone else: backend, " +
+        "database design, mobile and payments. Blazor is my main focus — the interactive UI, the " +
+        "server-side state, the SignalR surfaces and the screens the waiter presses. I studied software " +
         "engineering at URBE, sharpened the fundamentals through 1,300+ hours at Microverse, and have been " +
-        "shipping .NET in production since November 2022. I communicate clearly across distributed teams and " +
-        "I am comfortable being the person who owns the whole stack.";
+        "shipping .NET in production since November 2022. I communicate clearly across distributed teams " +
+        "and I am comfortable leading a complex web surface while still shipping with others.";
 
     public static readonly SocialLink[] Socials =
     [
@@ -141,8 +142,9 @@ public static class SiteData
         new("Nov 2022 – Present",
             ".NET Full Stack Developer — Core Platform Engineer",
             "Otamot GmbH / MyDinner.ch · Technolog Schweiz — Switzerland (Remote)",
-            "Sole developer responsible for designing, building and maintaining MyDinner.ch, a full-featured " +
-            "SaaS platform for Swiss restaurant management. The platform serves real restaurants in production " +
+            "Full stack engineer on MyDinner.ch, a restaurant management SaaS built by a product team. " +
+            "I contribute across backend, database, mobile and payments, and I lead the Blazor Server web " +
+            "application. Remote role for a Swiss company; the platform serves restaurants in production " +
             "with thousands of orders processed.",
             ["Blazor Server", "SignalR", "EF Core", "SQL Server", ".NET MAUI", "Stripe"],
             [
@@ -224,8 +226,8 @@ public static class SiteData
         {
             Slug = "mydinner",
             Name = "MyDinner.ch",
-            Tagline = "Restaurant management SaaS for Switzerland",
-            Role = "Core Platform Engineer · sole developer",
+            Tagline = "Restaurant management SaaS",
+            Role = "Core Platform Engineer · Blazor lead",
             Period = "Nov 2022 – Present",
             Kind = ProjectKind.Platform,
             Accent = "#ff7a45",
@@ -256,9 +258,10 @@ public static class SiteData
                     "flips that: a subscription, a portal the restaurant actually owns, and a system that works " +
                     "next to the point-of-sale — or completely without it."),
                 new("My role",
-                    "Sole developer. I designed the data model, wrote the services, built the front-end, shipped " +
-                    "the mobile app and keep it running in production. Every architectural decision on the " +
-                    "platform is one I had to defend to myself first."),
+                    "I contribute across the product — backend services, SQL Server, .NET MAUI mobile and " +
+                    "Stripe payments — alongside the team. On Blazor I take the lead: the interactive UI, the " +
+                    "server-side state, the SignalR real-time surfaces and the screens restaurants actually " +
+                    "run. The product is a team effort; the web app is where I focus most."),
                 new("Why Blazor Server",
                     "An order is a live conversation between guest, waiter, kitchen and till. Blazor Server over " +
                     "SignalR keeps one source of truth on the server and pushes it to every connected screen, " +
