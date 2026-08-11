@@ -30,7 +30,8 @@ public static class SiteData
     public const string Handle = "AlucardSanin";
     public const string Email = "davidisea@hotmail.com";
     public const string Phone = "+58 412-1702106";
-    public const string Location = "Switzerland (Remote)";
+    public const string Location = "Venezuela (Remote)";
+    public const string LocationDetail = "Based in Venezuela, working remotely with teams in Switzerland and LATAM";
     public const string FormEndpoint = "https://formspree.io/f/mpzbgdrg";
 
     public const string Role = ".NET Full Stack Developer";
