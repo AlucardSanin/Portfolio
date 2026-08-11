@@ -30,6 +30,8 @@
         </ul>
 
         <div class="navbar__actions">
+            <a class="navlink navlink--page" href="/resume">Résumé</a>
+
             <button type="button" class="icon-button" @onclick="ToggleTheme"
                     aria-label="@(Theme.Current == ThemeService.Dark ? "Switch to light mode" : "Switch to dark mode")"
                     title="@(Theme.Current == ThemeService.Dark ? "Light mode" : "Dark mode")">
@@ -42,14 +44,15 @@
             </button>
 
             <button type="button" class="icon-button navbar__burger" @onclick="ToggleMenu"
-                    aria-expanded="@_menuOpen" aria-label="@(_menuOpen ? "Close menu" : "Open menu")">
+                    aria-expanded="@(_menuOpen ? "true" : "false")"
+                    aria-label="@(_menuOpen ? "Close menu" : "Open menu")">
                 <Icon Name="@(_menuOpen ? "close" : "menu")" Size="20" />
             </button>
         </div>
     </nav>
 </header>
 
-<div class="mobile-menu @(_menuOpen ? "is-open" : null)" aria-hidden="@(!_menuOpen)">
+<div class="mobile-menu @(_menuOpen ? "is-open" : null)" aria-hidden="@(_menuOpen ? "false" : "true")">
     <ul class="mobile-menu__links">
         @foreach (var item in Sections)
         {
@@ -62,6 +65,10 @@
         }
     </ul>
     <div class="mobile-menu__socials">
+        <a href="/resume" @onclick="CloseMenu">
+            <Icon Name="arrow-right" Size="18" />
+            <span>Résumé</span>
+        </a>
         @foreach (var social in SiteData.Socials)
         {
             <a href="@social.Url" target="_blank" rel="noopener noreferrer" aria-label="@social.Label">

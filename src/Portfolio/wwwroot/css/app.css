@@ -54,6 +54,8 @@
   --text: #10121d;
   --muted: #555d7a;
   --accent: #5b3ef0;
+  --accent-2: #0e93b0;
+  --accent-3: #dd3f74;
   --shadow: 0 30px 70px -45px rgba(20, 22, 50, 0.55);
   --spot: rgba(91, 62, 240, 0.12);
   --grid-line: rgba(10, 12, 22, 0.045);
@@ -238,6 +240,10 @@ button {
   opacity: 0.5;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
+}
+
+:root[data-theme="light"] .page__noise {
+  opacity: 0.18;
 }
 
 .page__spot {
@@ -597,6 +603,19 @@ main {
   gap: 10px;
 }
 
+.navlink--page {
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.navlink--page:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
 .navbar__burger {
   display: none;
 }
@@ -709,9 +728,13 @@ main {
   animation: float-c 30s ease-in-out infinite;
 }
 
+/* "screen" blending disappears on a light background, so blend normally there. */
 :root[data-theme="light"] .hero__aurora {
-  opacity: 0.3;
-  mix-blend-mode: multiply;
+  opacity: 0.42;
+}
+
+:root[data-theme="light"] .hero__blob {
+  mix-blend-mode: normal;
 }
 
 @keyframes float-a {
@@ -750,10 +773,10 @@ main {
   overflow: hidden;
   /* Fade the phrases where the headline sits so they stay atmosphere, not noise. */
   mask-image: radial-gradient(
-    ellipse 46% 42% at 32% 48%,
-    transparent 10%,
-    rgba(0, 0, 0, 0.55) 55%,
-    #000 85%
+    ellipse 50% 60% at 30% 46%,
+    transparent 18%,
+    rgba(0, 0, 0, 0.5) 60%,
+    #000 88%
   );
 }
 
@@ -767,6 +790,10 @@ main {
   animation: drift var(--dur, 30s) ease-in-out var(--delay, 0s) infinite alternate;
   transform: scale(var(--scale, 1)) rotate(var(--spin, 0deg));
   will-change: transform;
+}
+
+:root[data-theme="light"] .air__phrase {
+  opacity: calc(var(--air-opacity, 0.16) * 0.62);
 }
 
 @keyframes drift {
@@ -930,7 +957,7 @@ main {
 .codecard {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg-soft) 82%, transparent);
+  background: color-mix(in srgb, var(--bg-soft) 96%, transparent);
   backdrop-filter: blur(20px);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -1350,6 +1377,7 @@ main {
 
 .about__text > p:not(.about__lead) {
   color: var(--muted);
+  margin-bottom: 14px;
 }
 
 .about__facts {
@@ -1531,6 +1559,93 @@ main {
   max-width: 68ch;
 }
 
+.timeline__achievements {
+  display: grid;
+  gap: 9px;
+  margin: 4px 0 6px;
+}
+
+.timeline__achievements li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.timeline__achievements .icon {
+  color: var(--accent);
+  flex: none;
+  margin-top: 4px;
+}
+
+.education {
+  margin-top: clamp(48px, 7vw, 84px);
+}
+
+.education__title {
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  margin-bottom: 22px;
+}
+
+.education__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.education__card {
+  padding: 26px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.education__period {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.education__card h4 {
+  font-size: 1.12rem;
+}
+
+.education__place {
+  font-size: 0.86rem;
+  color: var(--text);
+  opacity: 0.75;
+}
+
+.education__card ul {
+  display: grid;
+  gap: 8px;
+}
+
+.education__card li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.education__card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 /* ---------- 10. Services ---------- */
 .services {
   display: grid;
@@ -1655,6 +1770,25 @@ main {
   gap: 6px;
   font-size: 0.76rem;
   color: var(--accent);
+}
+
+.contact__details {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.contact__details li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.contact__details .icon {
+  color: var(--accent);
+  flex: none;
 }
 
 .contact__socials {
@@ -2203,9 +2337,222 @@ main {
   cursor: pointer;
 }
 
+/* ---------- Résumé ---------- */
+.resume-page {
+  padding-top: calc(var(--nav-height) + 48px);
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.resume-actions .case__back {
+  margin-bottom: 0;
+}
+
+.resume {
+  max-width: 860px;
+  margin-inline: auto;
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.resume__head {
+  padding-bottom: 22px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume__head h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 6px;
+}
+
+.resume__role {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.resume__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.resume__contact a {
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.resume__block {
+  margin-bottom: 34px;
+}
+
+.resume__block > h2 {
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume__block p {
+  color: var(--muted);
+  margin-bottom: 10px;
+  max-width: 74ch;
+}
+
+.resume__skills {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.resume__skills > div {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.resume__skills dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.resume__skills dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.resume__entry {
+  margin-bottom: 24px;
+}
+
+.resume__entry h3 {
+  font-size: 1.08rem;
+  margin-bottom: 4px;
+}
+
+.resume__entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.resume__entry-meta span {
+  opacity: 0.6;
+}
+
+.resume__entry-body {
+  font-style: italic;
+}
+
+.resume__entry-stack {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.resume__entry ul {
+  display: grid;
+  gap: 7px;
+}
+
+.resume__entry li {
+  position: relative;
+  padding-left: 17px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.resume__entry li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media print {
+  .navbar,
+  .mobile-menu,
+  .footer,
+  .scroll-progress,
+  .page__noise,
+  .page__spot,
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .resume-page {
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .resume {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: none;
+  }
+
+  .resume__block,
+  .resume__entry {
+    break-inside: avoid;
+  }
+
+  .resume__block > h2 {
+    color: #4a2fd6;
+  }
+
+  .resume__entry-meta,
+  .resume__role {
+    color: #4a2fd6;
+  }
+
+  .resume p,
+  .resume li,
+  .resume dd {
+    color: #333 !important;
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
-  .navbar__links {
+  .navbar__links,
+  .navlink--page {
     display: none;
   }
 
@@ -2275,6 +2622,11 @@ main {
 
   .about__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resume__skills > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
   }
 
   .footer__inner {

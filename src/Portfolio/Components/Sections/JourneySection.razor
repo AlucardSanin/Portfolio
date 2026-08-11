@@ -1,20 +1,34 @@
 <section class="section section--journey" id="journey">
     <div class="container">
         <SectionHeading Index="04"
-                        Kicker="Journey"
-                        Title="From my first &lt;div&gt; to production .NET"
-                        Lead="Four chapters, one direction: closer to the problem, deeper in the stack." />
+                        Kicker="Experience"
+                        Title="Where I have been shipping"
+                        Lead="Three years of production .NET for the Swiss hospitality industry, on top of a software engineering degree and 1,300 hours of deliberate practice." />
 
         <ol class="timeline">
             @foreach (var entry in SiteData.Timeline)
             {
                 <li class="timeline__item" data-reveal>
                     <div class="timeline__marker" aria-hidden="true"><span></span></div>
-                    <div class="timeline__card" data-tilt>
+                    <div class="timeline__card">
                         <p class="timeline__period">@entry.Period</p>
                         <h3 class="timeline__title">@entry.Title</h3>
                         <p class="timeline__place">@entry.Place</p>
                         <p class="timeline__body">@entry.Body</p>
+
+                        @if (entry.Achievements.Count > 0)
+                        {
+                            <ul class="timeline__achievements">
+                                @foreach (var achievement in entry.Achievements)
+                                {
+                                    <li>
+                                        <Icon Name="check" Size="15" />
+                                        <span>@achievement</span>
+                                    </li>
+                                }
+                            </ul>
+                        }
+
                         <ul class="chips chips--tight">
                             @foreach (var tag in entry.Tags)
                             {
@@ -25,5 +39,25 @@
                 </li>
             }
         </ol>
+
+        <div class="education" data-reveal>
+            <h3 class="education__title">Education</h3>
+            <div class="education__grid">
+                @foreach (var entry in SiteData.Education)
+                {
+                    <article class="education__card">
+                        <p class="education__period">@entry.Period</p>
+                        <h4>@entry.Title</h4>
+                        <p class="education__place">@entry.Place</p>
+                        <ul>
+                            @foreach (var note in entry.Notes)
+                            {
+                                <li>@note</li>
+                            }
+                        </ul>
+                    </article>
+                }
+            </div>
+        </div>
     </div>
 </section>

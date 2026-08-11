@@ -26,6 +26,17 @@
                     </span>
                 </button>
 
+                <ul class="contact__details">
+                    <li>
+                        <Icon Name="phone" Size="16" />
+                        <span>@SiteData.Phone</span>
+                    </li>
+                    <li>
+                        <Icon Name="map-pin" Size="16" />
+                        <span>@SiteData.Location</span>
+                    </li>
+                </ul>
+
                 <ul class="contact__socials">
                     @foreach (var social in SiteData.Socials)
                     {

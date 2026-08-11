@@ -227,6 +227,8 @@
 
   const ready = () => document.body.classList.add('is-ready');
 
+  const print = () => window.print();
+
   window.portfolio = {
     initReveal,
     initCounters,
@@ -240,6 +242,7 @@
     readTheme,
     applyTheme,
     copyText,
+    print,
     ready,
     reducedMotion
   };

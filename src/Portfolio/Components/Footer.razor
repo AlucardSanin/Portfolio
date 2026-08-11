@@ -21,6 +21,10 @@
 
         <nav class="footer__nav" aria-label="Footer">
             <a href="@($"mailto:{SiteData.Email}")">@SiteData.Email</a>
+            <a href="/resume">
+                <Icon Name="code" Size="16" />
+                <span>Résumé</span>
+            </a>
             @foreach (var social in SiteData.Socials.Where(s => s.Icon != "mail"))
             {
                 <a href="@social.Url" target="_blank" rel="noopener noreferrer">
@@ -32,7 +36,7 @@
 
         <div class="footer__meta">
             <p>Built with Blazor WebAssembly on .NET 10. No JavaScript framework was harmed.</p>
-            <p>© @DateTime.Now.Year @SiteData.Name — made in Maracaibo, deployed everywhere.</p>
+            <p>© @DateTime.Now.Year @SiteData.Name — built remotely, deployed everywhere.</p>
         </div>
 
         <button type="button" class="footer__top" @onclick="@(() => Interaction.ScrollToTopAsync())" aria-label="Back to top">

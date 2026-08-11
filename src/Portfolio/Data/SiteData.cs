@@ -4,7 +4,17 @@ public sealed record SocialLink(string Label, string Handle, string Url, string 
 
 public sealed record TechGroup(string Title, string Caption, IReadOnlyList<string> Items);
 
-public sealed record TimelineEntry(string Period, string Title, string Place, string Body, IReadOnlyList<string> Tags);
+public sealed record TimelineEntry(
+    string Period,
+    string Title,
+    string Place,
+    string Body,
+    IReadOnlyList<string> Tags,
+    IReadOnlyList<string> Achievements);
+
+public sealed record EducationEntry(string Period, string Title, string Place, IReadOnlyList<string> Notes);
+
+public sealed record LanguageSkill(string Name, string Level);
 
 public sealed record Service(string Icon, string Title, string Body);
 
@@ -19,34 +29,42 @@ public static class SiteData
     public const string Name = "David Isea";
     public const string Handle = "AlucardSanin";
     public const string Email = "davidisea@hotmail.com";
+    public const string Phone = "+58 412-1702106";
+    public const string Location = "Switzerland (Remote)";
     public const string FormEndpoint = "https://formspree.io/f/mpzbgdrg";
 
-    public const string Role = "Full-stack .NET developer";
+    public const string Role = ".NET Full Stack Developer";
+    public const string RoleLong = ".NET Full Stack Developer · Blazor · MAUI · SQL · React";
 
     public static readonly string[] RotatingRoles =
     [
-        "full-stack .NET developer",
+        ".NET full stack developer",
         "Blazor & C# specialist",
-        "product-minded engineer",
+        "core platform engineer",
         "one-person product team",
         "developer who actually ships"
     ];
 
     public const string HeroPitch =
-        "I build business software that people use every day: ordering platforms, inventory systems, " +
-        "invoicing flows and landing pages that move. C# on the inside, motion on the outside.";
+        "I design, build and maintain production SaaS for the Swiss hospitality industry. Real-time order " +
+        "management, Stripe payments, multi-tenant SQL Server and a mobile app — all of it end to end, " +
+        "all of it live.";
+
+    public const string Summary =
+        "Passionate full stack .NET developer with hands-on experience building production-grade enterprise " +
+        "web and mobile applications for the Swiss hospitality industry. I currently architect and develop " +
+        "MyDinner.ch — a complete restaurant management SaaS platform — including real-time order management, " +
+        "Stripe payment integration, multi-language support and a complex Blazor Server front-end.";
 
     public const string AboutLead =
-        "I started with HTML, CSS and JavaScript, spent a couple of years shipping React SPAs, " +
-        "and then fell hard for C#. Today I live in the .NET ecosystem: Blazor on the front, " +
-        "Entity Framework Core and SQL Server on the back, and .NET MAUI when the same product " +
-        "also has to fit in a pocket.";
+        "I am the sole developer behind a SaaS platform that real restaurants depend on every night.";
 
     public const string AboutBody =
-        "What I like most is the unglamorous part of software: the yard worker who needs to find an engine " +
-        "in thirty seconds, the restaurant that cannot lose an order at peak hour, the agency that needs its " +
-        "brand to feel alive in the first three seconds. I design the data model, write the services, build " +
-        "the UI, and stay until it runs in production behind nginx on a real server.";
+        "Proven ability to independently design scalable systems, optimise database performance and deliver " +
+        "features end to end — from the SQL schema to the button the waiter presses. I studied software " +
+        "engineering at URBE, sharpened the fundamentals through 1,300+ hours at Microverse, and have been " +
+        "shipping .NET in production since November 2022. I communicate clearly across distributed teams and " +
+        "I am comfortable being the person who owns the whole stack.";
 
     public static readonly SocialLink[] Socials =
     [
@@ -59,9 +77,16 @@ public static class SiteData
     public static readonly Stat[] Stats =
     [
         new("4+", "years building for the web"),
-        new("3", "products live in production"),
-        new("40+", "public repositories"),
+        new("70%", "less database load after query tuning"),
+        new("24+", "granular permission flags shipped"),
         new("1", "codebase → web, Android & iOS")
+    ];
+
+    public static readonly LanguageSkill[] Languages =
+    [
+        new("Spanish", "Native"),
+        new("English", "Professional"),
+        new("German", "Basic")
     ];
 
     /// <summary>Phrases that drift across the hero background.</summary>
@@ -73,90 +98,123 @@ public static class SiteData
         "dotnet watch",
         "SELECT * FROM ideas",
         "one codebase, every screen",
-        "null checks save lives",
+        "multi-tenant by design",
         "state is a lie",
         "make it move",
         "await Task.Ship()",
-        "0 commissions",
-        "VIN decoded ✓",
+        "PaymentIntent ✓",
+        "SignalR",
         "measure, then optimize",
         "it runs in production",
         "coffee.Refill()",
         "C#",
         "EF Core",
-        "SignalR",
+        ".Select() > .Include()",
         "MAUI",
         "SQL Server"
     ];
 
     public static readonly TechGroup[] Stack =
     [
-        new("Languages", "What I think in",
-            ["C#", "JavaScript", "SQL / T-SQL", "HTML5", "CSS3", "Ruby"]),
+        new("Back-end", "Where the logic lives",
+            ["C#", ".NET 9 / .NET 10", "ASP.NET Core", "Blazor Server", "Entity Framework Core", "REST APIs", "SignalR"]),
 
-        new(".NET", "Where I spend my days",
-            [".NET 10", "Blazor Server", "Blazor WebAssembly", "Blazor Hybrid", "ASP.NET Core", ".NET MAUI", "SignalR", "Entity Framework Core"]),
+        new("Front-end", "What the user touches",
+            ["Blazor", "React", "JavaScript", "HTML5", "CSS3", "Syncfusion UI Components", "Tailwind CSS"]),
 
-        new("Front-end", "Making it feel good",
-            ["React", "Redux", "Tailwind CSS", "Bootstrap", "Syncfusion Blazor", "Leaflet", "CSS animation", "Responsive design"]),
+        new("Mobile", "The same product, in a pocket",
+            [".NET MAUI", "Blazor Hybrid", "iOS", "Android"]),
 
-        new("Data", "Where the truth lives",
-            ["SQL Server", "PostgreSQL", "EF Core migrations", "Schema design", "Audit trails", "Versioned SQL scripts"]),
+        new("Database", "Where the truth lives",
+            ["MS SQL Server", "T-SQL", "SSMS", "EF Core migrations", "Query optimisation", "Multi-tenant design", "PostgreSQL"]),
 
-        new("Integrations", "Plugging into the real world",
-            ["Stripe", "DocuSeal e-signature", "MailKit / SMTP", "QuestPDF", "Google reCAPTCHA", "Geolocation & maps", "VIN decoding APIs"]),
+        new("Payments & documents", "The parts that make software billable",
+            ["Stripe PaymentIntent", "Stripe SetupIntent", "Stripe Connect accounts", "Webhooks", "PDF receipts", "Excel export"]),
 
-        new("Ship & run", "Getting it out the door",
-            ["Git & GitHub", "GitHub Actions", "Visual Studio", "nginx on Ubuntu", "Netlify", "Kestrel", "Linters & code review"])
+        new("DevOps & tools", "Getting it out the door",
+            ["Git & GitHub", "Visual Studio 2022", "IIS", "Azure (basic)", "nginx", "Agile / Scrum"])
     ];
 
     public static readonly TimelineEntry[] Timeline =
     [
-        new("2022", "Remote full-stack program", "Microverse",
-            "Learned the craft the hard way: daily pair programming with developers in other time zones, " +
-            "code reviews on everything, and a curriculum that went from raw HTML/CSS to Ruby on Rails and React.",
-            ["Ruby on Rails", "RSpec", "JavaScript", "Pair programming"]),
+        new("Nov 2022 – Present",
+            ".NET Full Stack Developer — Core Platform Engineer",
+            "Otamot GmbH / MyDinner.ch · Technolog Schweiz — Switzerland (Remote)",
+            "Sole developer responsible for designing, building and maintaining MyDinner.ch, a full-featured " +
+            "SaaS platform for Swiss restaurant management. The platform serves real restaurants in production " +
+            "with thousands of orders processed.",
+            ["Blazor Server", "SignalR", "EF Core", "SQL Server", ".NET MAUI", "Stripe"],
+            [
+                "Architected a real-time order management system with Blazor Server and SignalR so kitchen staff, service teams and managers collaborate live across devices.",
+                "Engineered a multi-tenant database architecture in MS SQL Server with Entity Framework Core, supporting multiple restaurants under one platform with isolated data.",
+                "Implemented full Stripe payments: PaymentIntent, SetupIntent, Connect accounts for restaurant sub-accounts, and automated PDF receipts.",
+                "Designed a role-based permission system with granular access per user type — Admin, Service Staff, Kitchen, Driver, Printer — covering 24+ individual permission flags.",
+                "Developed a .NET MAUI mobile app for iOS and Android, synchronised in real time with the web platform through REST APIs.",
+                "Built a reporting module with Excel/PDF export, date-range filtering, sales statistics by table and best-selling product analytics.",
+                "Cut server load by over 70% in high-volume periods by replacing full entity graph loads with targeted EF Core projections."
+            ]),
 
-        new("2022 – 2023", "The JavaScript years", "Freelance & personal products",
-            "Shipped single-page apps consuming public APIs — rockets and missions from SpaceX, a bookshelf, " +
-            "recipe catalogs, presale pages — learning state management, component design and CSS the useful way.",
-            ["React", "Redux", "Tailwind CSS", "REST APIs"]),
+        new("Apr 2022 – Nov 2022",
+            "Full Stack Web Development Student & Peer Mentor",
+            "Microverse — Remote",
+            "1,300+ hours of intensive full stack training with daily pair programming across time zones, " +
+            "and mentoring for developers coming up behind me.",
+            ["JavaScript", "React", "Redux", ".NET", "Git workflow"],
+            [
+                "Completed 1,300+ hours of intensive full stack training covering JavaScript, React, Redux and .NET.",
+                "Mentored junior developers in pair-programming sessions, code review and Git/GitHub best practices.",
+                "Delivered multiple full stack capstone projects, independently and with international teammates."
+            ]),
 
-        new("2024 – 2025", "The turn to C#", "Self-directed",
-            "Moved from the JavaScript ecosystem into .NET on purpose: strong typing, Entity Framework Core, " +
-            "relational modelling, and Blazor as a way to write the whole product in one language.",
-            ["C#", "EF Core", "SQL Server", "Clean layering"]),
+        new("Jan 2019 – Dec 2019",
+            "Hardware & Software Technician",
+            "Self-employed — Maracaibo, Venezuela",
+            "Where I learned that a system is only as good as the person who has to use it at 8am on a Monday.",
+            ["Troubleshooting", "Deployment", "Client support"],
+            [
+                "Diagnosed and resolved hardware and software issues, improving system performance and reducing customer turnaround time.",
+                "Deployed new hardware configurations and software solutions tailored to client requirements."
+            ])
+    ];
 
-        new("2026", "Shipping products in production", "MyDinner · RSY Yard · Arrieta Agency",
-            "Three live products in one year: a Swiss gastro ordering platform, a yard inventory and invoicing " +
-            "system with a mobile twin, and a motion-driven brand landing. Design, data model, code and deploy.",
-            ["Blazor", ".NET MAUI", "QuestPDF", "Stripe", "nginx"])
+    public static readonly EducationEntry[] Education =
+    [
+        new("2012 – 2022", "Software Engineering", "Universidad Rafael Belloso Chacín (URBE) · Maracaibo, Venezuela",
+            [
+                "Focused on software architecture, database design and systems engineering.",
+                "Led a capstone project introducing a modernised approach to software project design, replacing legacy methodologies."
+            ]),
+
+        new("2022", "Remote Full Stack Web Development Program", "Microverse · Remote",
+            [
+                "Mastered algorithms, data structures and full stack development through 1,300+ hours of structured training."
+            ])
     ];
 
     public static readonly Service[] Services =
     [
-        new("layers", "Business software that fits the business",
-            "Inventory, CRM, invoicing, roles and audit trails. I start from how your team actually works, " +
-            "model the data around it, and build the screens last."),
+        new("layers", "Multi-tenant SaaS, built properly",
+            "One platform, many customers, isolated data. I have designed and shipped the schema, the tenancy " +
+            "model and the permission system that keeps them apart."),
 
-        new("bolt", "Real-time web apps in Blazor",
-            "Interactive Blazor Server over SignalR or standalone WebAssembly — grids, dashboards, live state " +
-            "and forms that do not fight the user."),
+        new("bolt", "Real-time apps in Blazor",
+            "Blazor Server over SignalR for live dashboards, order boards and anything where two people need " +
+            "to see the same truth at the same second."),
 
         new("phone", "One codebase, web and mobile",
-            "Blazor Hybrid with .NET MAUI means the same Razor components run on the browser, on Android " +
-            "and on iOS. One team, one language, three platforms."),
+            "Blazor Hybrid with .NET MAUI puts the same Razor components in the browser, on Android and on iOS. " +
+            "One team, one language, three platforms."),
 
         new("card", "Payments, PDFs and paperwork",
-            "Stripe checkout, generated invoices with QuestPDF, e-signature with DocuSeal and transactional " +
-            "email with MailKit — the boring parts that make software billable."),
+            "Stripe PaymentIntent, SetupIntent and Connect sub-accounts, webhooks, automated receipts, " +
+            "invoice generation and e-signature. The boring parts, done right."),
 
-        new("sparkle", "Landings that make people stop scrolling",
-            "Hand-written CSS motion, scroll choreography and typography with personality. No template smell."),
+        new("server", "Databases that stay fast",
+            "T-SQL, EF Core migrations and query optimisation. On MyDinner, targeted projections cut server " +
+            "load by more than 70% during peak service."),
 
-        new("server", "Deployed, not just delivered",
-            "SQL Server schema scripts, environment configuration, nginx on Ubuntu, static hosting on Netlify. " +
-            "I hand over something that is already running.")
+        new("sparkle", "Interfaces that make people stop scrolling",
+            "Hand-written CSS motion, scroll choreography and typography with personality. No template smell.")
     ];
 
     public static readonly Project[] Projects =
@@ -164,41 +222,54 @@ public static class SiteData
         new()
         {
             Slug = "mydinner",
-            Name = "MyDinner",
-            Tagline = "Order-anywhere platform for Swiss restaurants",
-            Role = "Full-stack .NET developer",
-            Period = "Ongoing",
+            Name = "MyDinner.ch",
+            Tagline = "Restaurant management SaaS for Switzerland",
+            Role = "Core Platform Engineer · sole developer",
+            Period = "Nov 2022 – Present",
             Kind = ProjectKind.Platform,
             Accent = "#ff7a45",
             Featured = true,
             Shot = "img/shots/mydinner.webp",
             Summary =
-                "A gastronomy platform that gives every restaurant its own ordering portal: guests scan a QR code " +
-                "at the table, order take-away or delivery, and the kitchen sees it instantly — integrated with the " +
-                "point-of-sale system, with no per-order commission for the restaurant.",
-            Stack = ["C#", "Blazor Server", "SignalR", "Syncfusion Blazor", "Stripe", "Leaflet", "SQL Server", "Kestrel"],
-            Metrics = ["240+ ordering languages", "QR · take-away · delivery", "0% commission model"],
+                "A complete restaurant management platform: guests order from the table by QR code, take away " +
+                "or get delivery; the kitchen, the waiters and the manager see every order live; payments run " +
+                "through Stripe; and the whole thing is multi-tenant, so each restaurant gets its own isolated " +
+                "world under one platform. It serves real restaurants in production, with thousands of orders " +
+                "processed and no per-order commission.",
+            Stack = ["C#", "Blazor Server", "SignalR", "EF Core", "MS SQL Server", ".NET MAUI", "Stripe", "Syncfusion", "REST APIs"],
+            Metrics = ["Thousands of orders processed", "70% less server load at peak", "24+ permission flags", "Web + iOS + Android"],
             Highlights =
             [
-                "Interactive Blazor Server UI kept in sync over SignalR, so the dining room and the kitchen never drift apart.",
-                "Stripe payment flow wired into the ordering journey.",
-                "Leaflet maps plus browser geolocation for delivery areas and address resolution.",
-                "Service filtering, live translation and in-browser PDF/document viewing built on the Syncfusion Blazor suite."
+                "Real-time order management over Blazor Server and SignalR: kitchen staff, service teams and managers collaborate live across devices.",
+                "Multi-tenant architecture in MS SQL Server with Entity Framework Core — many restaurants, one platform, isolated data.",
+                "Full Stripe integration: PaymentIntent, SetupIntent, Connect accounts for restaurant sub-accounts, webhooks and automated PDF receipts.",
+                "Role-based permissions with granular control per user type — Admin, Service Staff, Kitchen, Driver, Printer — across 24+ individual flags.",
+                "A .NET MAUI mobile app for iOS and Android, synchronised in real time with the web platform through REST APIs.",
+                "Reporting module with Excel and PDF export, date-range filtering, sales statistics by table and best-selling product analytics.",
+                "Multi-language ordering, geolocation and map-based delivery areas so a guest can order in their own language."
             ],
             CaseStudy =
             [
                 new("The problem",
-                    "Delivery marketplaces charge restaurants a cut of every single order. MyDinner flips the model: " +
-                    "a flat subscription and a portal the restaurant actually owns, working next to — or completely " +
-                    "independent from — their POS."),
-                new("What I work on",
-                    "Feature work across the client-facing portal: the ordering flow, service and category filtering, " +
-                    "map and geolocation features, payment steps, document generation and the multi-language layer " +
-                    "that lets a guest order in their own language."),
+                    "Delivery marketplaces take a cut of every order and own the customer relationship. MyDinner " +
+                    "flips that: a subscription, a portal the restaurant actually owns, and a system that works " +
+                    "next to the point-of-sale — or completely without it."),
+                new("My role",
+                    "Sole developer. I designed the data model, wrote the services, built the front-end, shipped " +
+                    "the mobile app and keep it running in production. Every architectural decision on the " +
+                    "platform is one I had to defend to myself first."),
                 new("Why Blazor Server",
-                    "Ordering is a live, stateful conversation between guest, kitchen and till. Blazor Server over " +
-                    "SignalR keeps a single source of truth on the server and pushes updates to every connected screen " +
-                    "without shipping a separate API and front-end framework.")
+                    "An order is a live conversation between guest, waiter, kitchen and till. Blazor Server over " +
+                    "SignalR keeps one source of truth on the server and pushes it to every connected screen, " +
+                    "without maintaining a separate API and a separate front-end framework."),
+                new("Making it fast",
+                    "Peak service is the only performance test that matters. The biggest win came from replacing " +
+                    "full entity-graph loads with targeted EF Core projections through .Select(), which dropped " +
+                    "server load by more than 70% during high-volume periods."),
+                new("Getting paid",
+                    "Stripe Connect gives each restaurant its own sub-account, so money moves directly to them. " +
+                    "PaymentIntent and SetupIntent cover one-off and stored-card flows, webhooks reconcile the " +
+                    "state, and receipts are generated as PDFs automatically.")
             ],
             Links = [new("Visit site", "https://mydinner.ch/", "external")]
         },
@@ -217,7 +288,7 @@ public static class SiteData
             Summary =
                 "Operations software for a vehicle dismantling yard. It tracks engines, transmissions and incoming " +
                 "vehicles across the physical yard, handles acquisition by VIN, produces signed purchase invoices, " +
-                "and exposes a public parts search — on the web and as a native mobile app built from the same code.",
+                "and exposes a public parts search — on the web and as a mobile app built from the same code.",
             Stack = [".NET 10", "Blazor Web App", ".NET MAUI Hybrid", "EF Core 9", "SQL Server", "QuestPDF", "DocuSeal", "MailKit", "nginx"],
             Metrics = ["Web + Android + iOS from one codebase", "14 versioned SQL migrations", "5 permission roles"],
             Highlights =
@@ -235,10 +306,9 @@ public static class SiteData
                     "A yard full of engines, transmissions and half-dismantled vehicles is inventory that only exists " +
                     "in someone's head. Finding a part meant walking rows. Buying a car meant paper. Nothing was auditable."),
                 new("The model",
-                    "Three layers — Data, Web and Mobile — over a SQL Server schema that is versioned as plain SSMS " +
-                    "scripts rather than magic migrations, so the yard's own IT can read exactly what changed. " +
-                    "Business rules (pallet capacity, movement legality, zone deletion) live in the data layer, " +
-                    "not scattered through the UI."),
+                    "Three layers — Data, Web and Mobile — over a SQL Server schema versioned as plain SSMS scripts " +
+                    "rather than opaque migrations, so the yard's own IT can read exactly what changed. Business rules " +
+                    "(pallet capacity, movement legality, zone deletion) live in the data layer, not scattered through the UI."),
                 new("Web and mobile without a rewrite",
                     "The web app is a Blazor Web App running Interactive Server; the mobile app is .NET MAUI Blazor " +
                     "Hybrid. Same Razor components, same services, same validation — one place to fix a bug."),
