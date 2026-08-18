@@ -480,12 +480,133 @@ main {
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
+  height: 7px;
   width: 100%;
   z-index: 120;
   transform-origin: 0 50%;
   transform: scaleX(var(--scroll-progress));
-  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  background: linear-gradient(
+    90deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008026,
+    #24408e,
+    #732982,
+    #e40303
+  );
+  background-size: 200% 100%;
+  animation: rainbow-slide 3s linear infinite;
+  box-shadow: 0 0 22px rgba(255, 140, 0, 0.7), 0 0 36px rgba(115, 41, 130, 0.55);
+}
+
+@keyframes rainbow-slide {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* Full-page rainbow wash that intensifies with scroll. */
+.scroll-rainbow {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: calc(0.18 + var(--scroll-progress) * 0.55);
+  background:
+    linear-gradient(
+      calc(90deg + var(--scroll-progress) * 280deg),
+      rgba(228, 3, 3, 0.75),
+      rgba(255, 140, 0, 0.65),
+      rgba(255, 237, 0, 0.55),
+      rgba(0, 128, 38, 0.6),
+      rgba(36, 64, 142, 0.7),
+      rgba(115, 41, 130, 0.75)
+    );
+  mix-blend-mode: soft-light;
+  transition: opacity 0.12s linear;
+}
+
+.scroll-rainbow::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 28vh;
+  background: linear-gradient(
+    90deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
+    #008026,
+    #24408e,
+    #732982
+  );
+  opacity: calc(0.15 + var(--scroll-progress) * 0.55);
+  filter: blur(28px);
+  transform: translateY(calc((1 - var(--scroll-progress)) * 40%));
+}
+
+:root[data-theme="light"] .scroll-rainbow {
+  mix-blend-mode: multiply;
+  opacity: calc(0.12 + var(--scroll-progress) * 0.4);
+}
+
+/* Brief "haptic" pulse when a section snaps into view. */
+:root.is-haptic-pulse .page {
+  animation: haptic-nudge 220ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes haptic-nudge {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  35% {
+    transform: translate3d(0, 2px, 0) scale(0.997);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Rainbow confetti layer for scroll bursts. */
+.rainbow-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rainbow-burst__dot {
+  position: absolute;
+  width: var(--size, 10px);
+  height: var(--size, 10px);
+  border-radius: 999px;
+  background: var(--c, #ff8c00);
+  left: var(--x, 50%);
+  top: var(--y, 40%);
+  opacity: 0.95;
+  box-shadow: 0 0 12px var(--c, #ff8c00);
+  animation: burst-fly var(--dur, 900ms) cubic-bezier(0.12, 0.7, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.rainbow-burst__dot.is-stripe {
+  width: var(--w, 18px);
+  height: var(--h, 42px);
+  border-radius: 4px;
+  box-shadow: 0 0 16px var(--c, #ff8c00);
+}
+
+@keyframes burst-fly {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.4);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(var(--dx, 40px), var(--dy, -120px), 0) scale(1.15);
+    opacity: 0;
+  }
 }
 
 .navbar {
@@ -686,13 +807,36 @@ main {
   overflow: hidden;
 }
 
+/* Full-bleed pride flag behind the hero composition. */
+.hero__pride-flag {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.hero__pride-stripe {
+  flex: 1 1 0;
+  width: 100%;
+}
+
+.hero__pride-stripe--red { background: #e40303; }
+.hero__pride-stripe--orange { background: #ff8c00; }
+.hero__pride-stripe--yellow { background: #ffed00; }
+.hero__pride-stripe--green { background: #008026; }
+.hero__pride-stripe--blue { background: #24408e; }
+.hero__pride-stripe--violet { background: #732982; }
+
 .hero__aurora {
   position: absolute;
   inset: -20% -10% auto;
   height: 130%;
   pointer-events: none;
   filter: blur(90px);
-  opacity: 0.55;
+  opacity: 0.28;
+  z-index: 1;
 }
 
 .hero__blob {
@@ -759,10 +903,20 @@ main {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  z-index: 1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.18) 1px, transparent 1px);
   background-size: 68px 68px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 78%);
+}
+
+.hero__content {
+  padding: 28px 28px 24px;
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 /* Floating phrases */
@@ -855,6 +1009,16 @@ main {
   background-clip: text;
   color: transparent;
   animation: shimmer 9s ease-in-out infinite;
+}
+
+.hero__identity {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 4.4vw, 3.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text);
 }
 
 @keyframes shimmer {
@@ -2665,5 +2829,15 @@ main {
 
   .air {
     display: none;
+  }
+
+  .scroll-rainbow,
+  .rainbow-burst,
+  .hero__pride-flag {
+    display: none;
+  }
+
+  .scroll-progress {
+    animation: none;
   }
 }

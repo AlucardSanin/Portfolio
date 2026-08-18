@@ -81,6 +81,115 @@
     observers.set('counters', observer);
   };
 
+  /** Reading progress, rainbow wash intensity, confetti bursts + haptics. */
+  const PRIDE = ['#e40303', '#ff8c00', '#ffed00', '#008026', '#24408e', '#732982'];
+  let lastScrollY = 0;
+  let lastHapticAt = 0;
+  let lastBurstAt = 0;
+
+  const canVibrate = () =>
+    typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
+
+  const haptic = (pattern) => {
+    if (reducedMotion || !canVibrate()) return;
+    try {
+      navigator.vibrate(pattern);
+    } catch {
+      /* Vibration is best-effort. */
+    }
+  };
+
+  const visualHapticPulse = () => {
+    const root = document.documentElement;
+    root.classList.remove('is-haptic-pulse');
+    // Force restart of the CSS animation.
+    void root.offsetWidth;
+    root.classList.add('is-haptic-pulse');
+    window.setTimeout(() => root.classList.remove('is-haptic-pulse'), 260);
+  };
+
+  const spawnRainbowBurst = (intensity = 1) => {
+    if (reducedMotion) return;
+    const layer = document.getElementById('rainbow-burst');
+    if (!layer) return;
+
+    const now = performance.now();
+    if (now - lastBurstAt < 90) return;
+    lastBurstAt = now;
+
+    const count = Math.min(28, Math.round(12 + intensity * 14));
+    const originX = 8 + Math.random() * 84;
+    const originY = 18 + Math.random() * 55;
+
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('span');
+      const isStripe = i % 3 !== 0;
+      dot.className = isStripe ? 'rainbow-burst__dot is-stripe' : 'rainbow-burst__dot';
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 50 + Math.random() * (110 + intensity * 100);
+      dot.style.setProperty('--x', `${originX}%`);
+      dot.style.setProperty('--y', `${originY}%`);
+      dot.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+      dot.style.setProperty('--dy', `${Math.sin(angle) * dist - 60}px`);
+      dot.style.setProperty('--c', PRIDE[i % PRIDE.length]);
+      if (isStripe) {
+        dot.style.setProperty('--w', `${12 + Math.random() * 16}px`);
+        dot.style.setProperty('--h', `${28 + Math.random() * 36}px`);
+      } else {
+        dot.style.setProperty('--size', `${10 + Math.random() * 16}px`);
+      }
+      dot.style.setProperty('--dur', `${1000 + Math.random() * 1000}ms`);
+      layer.appendChild(dot);
+      window.setTimeout(() => dot.remove(), 2200);
+    }
+  };
+
+  const initScrollState = () => {
+    if (window.__portfolioScroll) return;
+    window.__portfolioScroll = true;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? window.scrollY / max : 0;
+      doc.style.setProperty('--scroll-progress', progress.toFixed(4));
+      doc.classList.toggle('is-scrolled', window.scrollY > 24);
+
+      const delta = Math.abs(window.scrollY - lastScrollY);
+      lastScrollY = window.scrollY;
+
+      if (delta > 28) {
+        spawnRainbowBurst(Math.min(1.8, delta / 120));
+      }
+
+      // Light scroll haptics — throttled so it feels like ticks, not a drill.
+      const now = performance.now();
+      if (delta > 40 && now - lastHapticAt > 140) {
+        lastHapticAt = now;
+        haptic(8);
+      }
+    };
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (frame) return;
+        frame = requestAnimationFrame(update);
+      },
+      { passive: true }
+    );
+    update();
+  };
+
+  /** Section enter: stronger haptic + rainbow pop. */
+  const onSectionEnter = () => {
+    haptic([12, 30, 18]);
+    visualHapticPulse();
+    spawnRainbowBurst(1.4);
+  };
+
   /** Tells .NET which section is currently under the navbar. */
   const observeSections = (dotNetRef) => {
     disconnect('sections');
@@ -88,13 +197,18 @@
     const sections = document.querySelectorAll('section[id]');
     if (!sections.length) return;
 
+    let lastId = '';
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          dotNetRef.invokeMethodAsync('OnSectionChanged', visible.target.id);
+        if (!visible) return;
+        const id = visible.target.id;
+        if (id && id !== lastId) {
+          lastId = id;
+          onSectionEnter();
+          dotNetRef.invokeMethodAsync('OnSectionChanged', id);
         }
       },
       { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] }
@@ -154,32 +268,6 @@
       card.addEventListener('pointerleave', reset);
       card.addEventListener('blur', reset);
     });
-  };
-
-  /** Reading progress bar + "page has scrolled" flag for the navbar. */
-  const initScrollState = () => {
-    if (window.__portfolioScroll) return;
-    window.__portfolioScroll = true;
-
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const progress = max > 0 ? window.scrollY / max : 0;
-      doc.style.setProperty('--scroll-progress', progress.toFixed(4));
-      doc.classList.toggle('is-scrolled', window.scrollY > 24);
-    };
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (frame) return;
-        frame = requestAnimationFrame(update);
-      },
-      { passive: true }
-    );
-    update();
   };
 
   const scrollToId = (id) => {
@@ -244,7 +332,9 @@
     copyText,
     print,
     ready,
-    reducedMotion
+    reducedMotion,
+    spawnRainbowBurst,
+    haptic
   };
 
   applyTheme(readTheme());
