@@ -135,10 +135,17 @@ button {
   color: #fff;
 }
 
-:focus-visible {
+/* Focus ring only where the keyboard can land. Elements focused by script
+   (FocusOnNavigate puts the <h1> on tabindex="-1") never show it. */
+:is(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
   outline: 2px solid var(--accent-2);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible {
+  outline: none;
 }
 
 .skip-link {
