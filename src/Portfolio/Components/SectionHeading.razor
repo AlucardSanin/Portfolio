@@ -1,6 +1,5 @@
 <header class="heading" data-reveal>
     <p class="heading__kicker">
-        <span class="heading__index">@Index</span>
         <span class="heading__line" aria-hidden="true"></span>
         @Kicker
     </p>
@@ -12,7 +11,6 @@
 </header>
 
 @code {
-    [Parameter, EditorRequired] public string Index { get; set; } = "01";
     [Parameter, EditorRequired] public string Kicker { get; set; } = string.Empty;
     [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
     [Parameter] public string? Lead { get; set; }

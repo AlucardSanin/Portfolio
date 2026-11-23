@@ -7,7 +7,6 @@
             }
             <span class="work__glow" aria-hidden="true"></span>
         </a>
-        <span class="work__number" aria-hidden="true">@Position.ToString("00")</span>
     </div>
 
     <div class="work__body">
@@ -59,7 +58,6 @@
 
 @code {
     [Parameter, EditorRequired] public Project Project { get; set; } = default!;
-    [Parameter] public int Position { get; set; }
 
     private string CaseUrl => $"/work/{Project.Slug}";
 }

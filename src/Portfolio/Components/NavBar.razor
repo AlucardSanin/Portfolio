@@ -22,7 +22,6 @@
                     <button type="button"
                             class="navlink @(ActiveSection == item.Id ? "is-active" : null)"
                             @onclick="() => GoToSection(item.Id)">
-                        <span class="navlink__index">@item.Index</span>
                         <span class="navlink__label">@item.Label</span>
                     </button>
                 </li>
@@ -57,10 +56,7 @@
         @foreach (var item in Sections)
         {
             <li>
-                <button type="button" @onclick="() => GoToSection(item.Id)">
-                    <span class="mobile-menu__index">@item.Index</span>
-                    @item.Label
-                </button>
+                <button type="button" @onclick="() => GoToSection(item.Id)">@item.Label</button>
             </li>
         }
     </ul>
@@ -80,16 +76,16 @@
 </div>
 
 @code {
-    private sealed record NavItem(string Index, string Label, string Id);
+    private sealed record NavItem(string Label, string Id);
 
     private static readonly NavItem[] Sections =
     [
-        new("01", "Work", "work"),
-        new("02", "About", "about"),
-        new("03", "Stack", "stack"),
-        new("04", "Journey", "journey"),
-        new("05", "Services", "services"),
-        new("06", "Contact", "contact")
+        new("Work", "work"),
+        new("About", "about"),
+        new("Stack", "stack"),
+        new("Journey", "journey"),
+        new("Services", "services"),
+        new("Contact", "contact")
     ];
 
     [Parameter] public string? ActiveSection { get; set; }
