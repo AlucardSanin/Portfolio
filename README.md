@@ -5,8 +5,13 @@ static site, so it can be hosted anywhere: Netlify, GitHub Pages, Azure Static W
 nginx folder.
 
 Live projects featured here: [mydinner.ch](https://mydinner.ch/),
-[inventory-rsy.online](https://www.inventory-rsy.online/) and
-[arrietagency.com](https://arrietagency.com/).
+[fossick.lumewatch.us](https://fossick.lumewatch.us/) (iOS app),
+[kirona.ai](https://kirona.ai/es), [inventory-rsy.online](https://www.inventory-rsy.online/),
+[arrietagency.com](https://arrietagency.com/),
+[Website de Fonética I](https://alucardsanin.github.io/YolaProfeWebApp/) and
+[corvitarn.com](https://corvitarn.com/).
+
+The official deployment is <https://davidiseaportfolio.netlify.app/>.
 
 ## What is in it
 

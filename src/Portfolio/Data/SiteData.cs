@@ -35,7 +35,7 @@ public static class SiteData
     public const string FormEndpoint = "https://formspree.io/f/mpzbgdrg";
 
     public const string Role = ".NET Full Stack Developer";
-    public const string RoleLong = ".NET Full Stack Developer · Blazor · MAUI · SQL · React";
+    public const string RoleLong = ".NET Full Stack Developer · Blazor · MAUI · SQL · React / React Native";
 
     public static readonly string[] RotatingRoles =
     [
@@ -49,7 +49,8 @@ public static class SiteData
     public const string HeroPitch =
         "I help ship production SaaS with a product team — backend, database, mobile and payments included. " +
         "On Blazor I take the lead: the interactive UI, the real-time surfaces and the screens restaurants " +
-        "run every night. I work remotely from Venezuela for Otamot / MyDinner.ch.";
+        "run every night. I work remotely from Venezuela for Otamot / technolog.ch on MyDinner.ch and Kirona ERP, " +
+        "and as a freelancer I have shipped an iOS app through the App Store and Blazor sites from an empty repo.";
 
     public const string Summary =
         "Passionate full stack .NET developer with hands-on experience building production-grade enterprise " +
@@ -66,7 +67,9 @@ public static class SiteData
         "server-side state, the SignalR surfaces and the screens the waiter presses. I studied software " +
         "engineering at URBE, sharpened the fundamentals through 1,300+ hours at Microverse, and have been " +
         "shipping .NET in production since November 2022. I communicate clearly across distributed teams " +
-        "and I am comfortable leading a complex web surface while still shipping with others.";
+        "and I am comfortable leading a complex web surface while still shipping with others. On the side I " +
+        "freelance: Fossick, an iOS app built with Expo and React Native on top of a .NET API, went through " +
+        "TestFlight and App Store Connect; and I build Blazor sites from scratch for clients who need them live fast.";
 
     public static readonly SocialLink[] Socials =
     [
@@ -80,7 +83,7 @@ public static class SiteData
     [
         new("4+", "years building for the web"),
         new("70%", "less database load after query tuning"),
-        new("24+", "granular permission flags shipped"),
+        new("7", "live products and sites in production"),
         new("1", "codebase → web, Android & iOS")
     ];
 
@@ -113,19 +116,22 @@ public static class SiteData
         "EF Core",
         ".Select() > .Include()",
         "MAUI",
-        "SQL Server"
+        "SQL Server",
+        "expo run:ios",
+        "TestFlight ✓",
+        "Kirona ERP"
     ];
 
     public static readonly TechGroup[] Stack =
     [
         new("Back-end", "Where the logic lives",
-            ["C#", ".NET 9 / .NET 10", "ASP.NET Core", "Blazor Server", "Entity Framework Core", "REST APIs", "SignalR"]),
+            ["C#", ".NET 9 / .NET 10", "ASP.NET Core", "Blazor Server", "Entity Framework Core", "REST APIs", "SignalR", "Azure OpenAI", "Hangfire"]),
 
         new("Front-end", "What the user touches",
-            ["Blazor", "React", "JavaScript", "HTML5", "CSS3", "Syncfusion UI Components", "Tailwind CSS"]),
+            ["Blazor", "Blazor WebAssembly", "React", "TypeScript", "JavaScript", "HTML5", "CSS3", "Syncfusion UI Components", "Tailwind CSS"]),
 
         new("Mobile", "The same product, in a pocket",
-            [".NET MAUI", "Blazor Hybrid", "iOS", "Android"]),
+            [".NET MAUI", "Blazor Hybrid", "Expo / React Native", "iOS", "Android", "App Store Connect & TestFlight", "RevenueCat"]),
 
         new("Database", "Where the truth lives",
             ["MS SQL Server", "T-SQL", "SSMS", "EF Core migrations", "Query optimisation", "Multi-tenant design", "PostgreSQL"]),
@@ -134,20 +140,35 @@ public static class SiteData
             ["Stripe PaymentIntent", "Stripe SetupIntent", "Stripe Connect accounts", "Webhooks", "PDF receipts", "Excel export"]),
 
         new("DevOps & tools", "Getting it out the door",
-            ["Git & GitHub", "Visual Studio 2022", "IIS", "Azure (basic)", "nginx", "Agile / Scrum"])
+            ["Git & GitHub", "Azure DevOps", "GitHub Actions", "Visual Studio 2022", "IIS", "Azure App Service", "nginx", "Netlify / GitHub Pages", "Agile / Scrum"])
     ];
 
     public static readonly TimelineEntry[] Timeline =
     [
+        new("2026 – Present",
+            "Freelance Developer — mobile apps and websites from scratch",
+            "Lume Watch LLC (Texas) · UNEFM (Venezuela) · Corvita (Miami) · RSY · Arrieta Agency — Remote",
+            "Independent work alongside my main role: a thrift-value scanner app shipped to iPhone, and web " +
+            "platforms and marketing sites built from an empty repository to a live domain.",
+            ["Expo / React Native", "TypeScript", ".NET 10 API", "Blazor WebAssembly", "GitHub Pages", "App Store Connect"],
+            [
+                "Built Fossick, an iOS thrift-value scanner for Lume Watch LLC: Expo / React Native app, .NET 10 API on Azure with Azure OpenAI, and the release pipeline through TestFlight and App Store Connect.",
+                "Built the Website de Fonética I for UNEFM from scratch as a backend-free Blazor WebAssembly PWA, deployed by GitHub Actions to GitHub Pages, with all content editable in Markdown and JSON.",
+                "Designed and built corvitarn.com, a multi-page site for a sports recovery lounge in Miami, from desktop concepts to production, with booking, memberships and financing integrations.",
+                "Delivered RSY Yard Inventory (Blazor Web App + .NET MAUI Hybrid) and the Arrieta Agency brand landing (Blazor)."
+            ]),
+
         new("Nov 2022 – Present",
             ".NET Full Stack Developer — Core Platform Engineer",
-            "Otamot GmbH / MyDinner.ch · Technolog Schweiz — Switzerland (Remote)",
+            "Otamot GmbH / technolog.ch · MyDinner.ch & Kirona ERP — Switzerland (Remote)",
             "Full stack engineer on MyDinner.ch, a restaurant management SaaS built by a product team. " +
             "I contribute across backend, database, mobile and payments, and I lead the Blazor Server web " +
-            "application. Remote role for a Swiss company; the platform serves restaurants in production " +
-            "with thousands of orders processed.",
-            ["Blazor Server", "SignalR", "EF Core", "SQL Server", ".NET MAUI", "Stripe"],
+            "application. Since November 2026 I also work on Kirona ERP, the team's cloud ERP for SMEs — " +
+            "web only: the Blazor product UI and the public multilingual website. Remote role for a Swiss " +
+            "company; MyDinner serves restaurants in production with thousands of orders processed.",
+            ["Blazor Server", "Blazor Web App", "SignalR", "EF Core", "SQL Server", ".NET MAUI", "Stripe"],
             [
+                "Kirona ERP: built the public website kirona.ai from scratch as a Blazor app in five languages, redesigned the ERP dashboard and reports cockpit, and translated the core modules into ten languages.",
                 "Architected a real-time order management system with Blazor Server and SignalR so kitchen staff, service teams and managers collaborate live across devices.",
                 "Engineered a multi-tenant database architecture in MS SQL Server with Entity Framework Core, supporting multiple restaurants under one platform with isolated data.",
                 "Implemented full Stripe payments: PaymentIntent, SetupIntent, Connect accounts for restaurant sub-accounts, and automated PDF receipts.",
@@ -204,9 +225,9 @@ public static class SiteData
             "Blazor Server over SignalR for live dashboards, order boards and anything where two people need " +
             "to see the same truth at the same second."),
 
-        new("phone", "One codebase, web and mobile",
-            "Blazor Hybrid with .NET MAUI puts the same Razor components in the browser, on Android and on iOS. " +
-            "One team, one language, three platforms."),
+        new("phone", "Mobile apps that reach the App Store",
+            "Blazor Hybrid with .NET MAUI when the web app should become the mobile app; Expo and React Native " +
+            "when the phone is the product. Either way I take it through TestFlight and App Store Connect."),
 
         new("card", "Payments, PDFs and paperwork",
             "Stripe PaymentIntent, SetupIntent and Connect sub-accounts, webhooks, automated receipts, " +
@@ -276,6 +297,106 @@ public static class SiteData
                     "state, and receipts are generated as PDFs automatically.")
             ],
             Links = [new("Visit site", "https://mydinner.ch/", "external")]
+        },
+
+        new()
+        {
+            Slug = "fossick",
+            Name = "Fossick",
+            Tagline = "Thrift value scanner for iPhone",
+            Role = "Mobile & backend developer · App Store release",
+            Period = "2026",
+            Kind = ProjectKind.Product,
+            Accent = "#c2410c",
+            Featured = true,
+            Shot = "img/shots/fossick.webp",
+            Summary =
+                "Snap a photo of any thrift find and see what the same thing actually sold for. Fossick identifies " +
+                "the item, pulls real sold comps, suggests the most you should pay, and lets you log finds against " +
+                "a monthly profit goal — with Digger, an AI assistant, along for the hunt. A product of Lume Watch " +
+                "LLC. I built the iOS app and the API behind it, and took it through TestFlight and App Store " +
+                "Connect to publication.",
+            Stack = ["Expo SDK 54", "React Native", "TypeScript", "React Navigation", "Reanimated", "RevenueCat", "Sign in with Apple", ".NET 10 Web API", "EF Core · SQL Server", "Azure OpenAI", "Azure App Service", "App Store Connect · TestFlight"],
+            Metrics = ["Published on iOS through App Store Connect", "28 builds shipped via TestFlight", "English & Spanish", "3 free scans · Pro monthly & lifetime"],
+            Highlights =
+            [
+                "Camera scan → AI identification → sold-comp price range with a 'pay at most' figure, each scan linked to the listings behind it.",
+                "Digger, an AI assistant you can ask about an item, with a native camera / photo-library picker that feeds the conversation.",
+                "Monthly profit goal, find log, quests and an activity feed so the hunt has a scoreboard.",
+                "Nearby thrift stores and 'hunting grounds' on a map, with category whitelists and routing fallbacks.",
+                "Sign in with Apple and social login; subscriptions through RevenueCat — 3 free scans, Pro Monthly and Pro Lifetime.",
+                "Onboarding with a hand-built sprite-atlas mascot at 24 fps, reduced-motion fallbacks and compact layouts for small phones.",
+                "No ads and no cross-app tracking; privacy manifest and permission copy written for App Review."
+            ],
+            CaseStudy =
+            [
+                new("The problem",
+                    "Resellers walk thrift racks guessing. Fossick turns a photo into an answer: what is it, what did " +
+                    "it sell for recently, and what is the most you should pay for it right now."),
+                new("My role",
+                    "The whole product from the data model to the store listing: the Expo / React Native app, the " +
+                    "ASP.NET Core API, the SQL Server schema and the release pipeline. I also wrote the identification " +
+                    "rules — a watch needs brand and model with enough confidence before pricing is allowed."),
+                new("Getting it onto iPhones",
+                    "Native workflow, not Expo Go: prebuild, Xcode archives, signed exports and uploads to App Store " +
+                    "Connect. Twenty-eight TestFlight builds, each one a round of feedback, before the version " +
+                    "that went to review. Permission strings, privacy manifest and Sign in with Apple were all " +
+                    "part of passing it."),
+                new("The backend",
+                    "A .NET 10 Web API on Azure App Service with EF Core over SQL Server, JWT auth, Azure Blob " +
+                    "Storage for photos and Azure OpenAI for identification and the Digger chat, including a " +
+                    "tool-calling loop that had to survive its second turn."),
+                new("Making it feel native",
+                    "React Navigation with native stack transitions, Reanimated for the mascot and reveals, haptics " +
+                    "where they earn it, and Reduce Motion respected everywhere. Every flow was walked on the " +
+                    "simulator with scripted taps before it shipped.")
+            ],
+            Links = [new("Visit site", "https://fossick.lumewatch.us/", "external")]
+        },
+
+        new()
+        {
+            Slug = "kirona",
+            Name = "Kirona ERP",
+            Tagline = "Cloud ERP for SMEs with an AI assistant",
+            Role = "Web developer · Blazor (Otamot / technolog.ch)",
+            Period = "Nov 2026 – Present",
+            Kind = ProjectKind.Platform,
+            Accent = "#6366f1",
+            Featured = true,
+            Shot = "img/shots/kirona.webp",
+            Summary =
+                "One system from the first quote to the paid invoice: sales, production, inventory, logistics and " +
+                "accounting for small and medium businesses, with an AI assistant that answers from the company's " +
+                "own data. Kirona is a product of Otamot GmbH built by technolog.ch — the same team behind " +
+                "MyDinner — and I work on its web side only: the Blazor product UI and the public multilingual " +
+                "website. No mobile on this one.",
+            Stack = ["C#", ".NET 10", "Blazor Web App", "EF Core", "SQL Server · PostgreSQL · SQLite", "SignalR", "Hangfire", "QuestPDF", "Azure DevOps"],
+            Metrics = ["Website in 5 languages", "Product UI in 10 languages", "Swiss QR invoicing", "Web only — same stack as MyDinner"],
+            Highlights =
+            [
+                "Built kirona.ai from scratch as a Blazor app: launch page and sub-pages — product, AI, industries, pricing, partners, investors, download, contact and legal — in German, English, Spanish, Italian and Portuguese.",
+                "Redesigned the ERP dashboard: full-width layout, reports as a cockpit and a reworked data analyzer.",
+                "Translated the core modules — quotes, invoices, delivery notes, production, warehouse, shop and customer portal — into ten languages.",
+                "Support chat widget with availability states (online, busy, inbox) for the AI support surface.",
+                "Fixed demo-data loading on an already-started database and a round of UI defects found with the test company and the light theme."
+            ],
+            CaseStudy =
+            [
+                new("Where I fit",
+                    "Kirona uses the stack I already run every day on MyDinner — Blazor, EF Core, SQL Server, SignalR — " +
+                    "so I joined on the web side: the product's Blazor UI and the public site. The mobile app is " +
+                    "someone else's; this is strictly web."),
+                new("The website",
+                    "kirona.ai started as an empty Blazor project. Shared layout, page hero, card grids and CTA bands " +
+                    "as components; copy in per-language JSON resources so marketing can edit a sentence without " +
+                    "touching Razor."),
+                new("The product UI",
+                    "Dashboard, reports cockpit, data analyzer and a long list of module screens — redesigned for " +
+                    "full screen width and translated into ten languages, with fixes landing through Azure DevOps " +
+                    "branches merged from master.")
+            ],
+            Links = [new("Visit site", "https://kirona.ai/es", "external")]
         },
 
         new()
@@ -368,6 +489,92 @@ public static class SiteData
                 new("Visit site", "https://arrietagency.com/", "external"),
                 new("Source", "https://github.com/AlucardSanin/GinsaASPNETBlazorWebApp", "github")
             ]
+        },
+
+        new()
+        {
+            Slug = "fonetica-unefm",
+            Name = "Website de Fonética I",
+            Tagline = "Phonetics training platform for UNEFM students",
+            Role = "Freelance · built from scratch",
+            Period = "2026",
+            Kind = ProjectKind.Product,
+            Accent = "#3b82f6",
+            Featured = true,
+            Shot = "img/shots/fonetica-unefm.webp",
+            Summary =
+                "A backend-free learning platform for the English phonetics course at UNEFM Carirubana, built for " +
+                "a degree thesis. Four task-based modules with video lessons, readings, interactive practice, quizzes " +
+                "and a recorded Speaking Challenge per module. Every text is Markdown and every list is JSON, so the " +
+                "teacher updates the course without touching code.",
+            Stack = ["Blazor WebAssembly", ".NET 10", "C#", "Markdig", "PWA · service worker", "GitHub Actions", "GitHub Pages", "Google Analytics 4"],
+            Metrics = ["Zero backend, zero hosting cost", "Offline-capable PWA", "Content in Markdown + JSON", "Deployed on every push"],
+            Highlights =
+            [
+                "Standalone Blazor WebAssembly: a static site, no accounts, no database, hosted free on GitHub Pages.",
+                "Content lives in wwwroot/contenido as Markdown and JSON — IPA notation via inline code, highlights via ==text== — with a written guide for the teacher.",
+                "YouTube lessons load lazily (thumbnail first, youtube-nocookie player on tap) and open in-page so students never leave the site.",
+                "Service worker tuned for slow connections: app shell cache-first, content network-first, no web fonts.",
+                "Speaking Challenges collected through a Google Form per module; usage metrics logged to GA4 for the thesis.",
+                "GitHub Actions builds and publishes on every push to main, with the base path and a 404 fallback handled for Pages."
+            ],
+            CaseStudy =
+            [
+                new("The brief",
+                    "A phonetics teacher needed a training space her students could reach from cheap phones on slow " +
+                    "connections, with no budget for hosting and no developer on call afterwards."),
+                new("Why Blazor WebAssembly, static",
+                    "C# end to end, zero servers to pay for, and a PWA that keeps working once loaded. GitHub Pages " +
+                    "hosts it for free and GitHub Actions rebuilds it on every push."),
+                new("Editable without me",
+                    "The platform reads its own content at runtime from Markdown and JSON, so adding a module or " +
+                    "fixing a sentence is a file edit, not a release.")
+            ],
+            Links =
+            [
+                new("Visit site", "https://alucardsanin.github.io/YolaProfeWebApp/", "external"),
+                new("Source", "https://github.com/AlucardSanin/YolaProfeWebApp", "github")
+            ]
+        },
+
+        new()
+        {
+            Slug = "corvita",
+            Name = "Corvita Recovery",
+            Tagline = "Website for a sports recovery and biohacking lounge in Miami",
+            Role = "Freelance · design and build from scratch",
+            Period = "2026",
+            Kind = ProjectKind.Landing,
+            Accent = "#e11d48",
+            Featured = true,
+            Shot = "img/shots/corvita.webp",
+            Summary =
+                "A bilingual, multi-page site for a recovery and biohacking lounge in Hialeah: services, memberships, " +
+                "a 30-day protocol, supplements, team, FAQs and gift cards, with online booking, WhatsApp contact " +
+                "and financing built in. Taken from desktop design concepts to a live domain, then kept in sync " +
+                "with the production server as the client's requests came in.",
+            Stack = ["HTML5", "CSS design system", "Vanilla JavaScript", "JSON-driven content", "PHP endpoints", "Vagaro booking embeds", "Affirm financing", "Figma handoff", "SEO · sitemap"],
+            Metrics = ["9 public routes", "English & Spanish", "Booking + memberships embedded", "Concepts → production"],
+            Highlights =
+            [
+                "Three desktop concepts (editorial, performance, wellness) presented to the client before a line of production code.",
+                "A small CSS design system — typography, color, effects, polish — shared across every route instead of per-page styles.",
+                "Copy and lists (team, FAQs, services, memberships) come from JSON data files, so updates are edits, not rewrites.",
+                "Vagaro booking and membership widgets, WhatsApp and call-now actions, Google reviews and Affirm pay-over-time.",
+                "Every change verified against the live server: public files downloaded and compared by hash before and after each sync."
+            ],
+            CaseStudy =
+            [
+                new("The brief",
+                    "A real business with real bookings needed a site that sells the experience — intro session, " +
+                    "memberships, 30-day protocol — and gets a visitor into the booking flow in one tap, in " +
+                    "English or Spanish."),
+                new("The approach",
+                    "Design first: concepts the client could react to, then a production build with a shared " +
+                    "stylesheet system and JSON content. Launched under /new/ beside the existing site, then " +
+                    "promoted to the root routes once approved.")
+            ],
+            Links = [new("Visit site", "https://corvitarn.com/", "external")]
         },
 
         new()
